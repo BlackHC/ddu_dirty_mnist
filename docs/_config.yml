@@ -1,6 +1,6 @@
 repository: BlackHC/ddu_dirty_mnist
-output: web
-topnav_title: ddu_dirty_mnist
+output: web, pdf
+topnav_title: Pages
 site_title: ddu_dirty_mnist
 company_name: Jishnu Mukhoti, Andreas Kirsch, Joost van Amersfoort, Philip H.S. Torr, Yarin Gal
 description: "Dirty-MNIST from \"Deterministic Neural Networks with Appropriate Inductive Biases Capture Epistemic and Aleatoric Uncertainty\""
