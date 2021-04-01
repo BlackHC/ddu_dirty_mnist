@@ -9,8 +9,8 @@ index = {"MNIST_NORMALIZATION": "01_dataloader.ipynb",
 
 modules = ["dirty_mnist.py"]
 
-doc_url = "https://BlackHC.github.io/ddu_dirty_mnist/"
+doc_url = "https://blackhc.github.io/ddu_dirty_mnist/"
 
-git_url = "https://github.com/BlackHC/ddu_dirty_mnist/tree/master/"
+git_url = "https://github.com/blackhc/ddu_dirty_mnist/tree/master/"
 
 def custom_doc_links(name): return None
