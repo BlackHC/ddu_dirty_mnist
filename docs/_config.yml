@@ -2,7 +2,7 @@ repository: BlackHC/ddu_dirty_mnist
 output: web
 topnav_title: ddu_dirty_mnist
 site_title: ddu_dirty_mnist
-company_name: 2020, Andreas Kirsch, Jishnu Mukhoti, Joost van Amersfoort, Philip H.S. Torr, Yarin Gal
+company_name: Jishnu Mukhoti, Andreas Kirsch, Joost van Amersfoort, Philip H.S. Torr, Yarin Gal
 description: "Dirty-MNIST from \"Deterministic Neural Networks with Appropriate Inductive Biases Capture Epistemic and Aleatoric Uncertainty\""
 # Set to false to disable KaTeX math
 use_math: true
