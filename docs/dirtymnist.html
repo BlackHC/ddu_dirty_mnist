@@ -114,13 +114,23 @@ nb_path: "02_dirtymnist.ipynb"
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">mnist_mean</span><span class="p">,</span> <span class="n">mnist_std</span> <span class="o">=</span> <span class="mf">0.1307</span><span class="p">,</span> <span class="mf">0.3081</span>
 
-<span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">((</span><span class="n">mnist_mean</span><span class="p">,),</span> <span class="p">(</span><span class="n">mnist_std</span><span class="p">,))])</span>
+<span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">((</span><span class="n">mnist_mean</span><span class="p">,),</span> <span class="p">(</span><span class="n">mnist_std</span><span class="p">,))]</span>
+<span class="p">)</span>
 
-<span class="n">mnist_train_dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s2">&quot;./mnist_data/&quot;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">mnist_test_dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s2">&quot;./mnist_data/&quot;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">mnist_train_dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span>
+    <span class="n">root</span><span class="o">=</span><span class="s2">&quot;./mnist_data/&quot;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">mnist_test_dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span>
+    <span class="n">root</span><span class="o">=</span><span class="s2">&quot;./mnist_data/&quot;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
 
-<span class="n">mnist_train_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="n">mnist_train_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">mnist_test_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="n">mnist_test_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">mnist_train_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
+    <span class="n">dataset</span><span class="o">=</span><span class="n">mnist_train_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">mnist_test_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
+    <span class="n">dataset</span><span class="o">=</span><span class="n">mnist_test_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
 </pre></div>
 
     </div>
@@ -187,19 +197,31 @@ nb_path: "02_dirtymnist.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">restore_or_create</span><span class="p">(</span><span class="n">file_or_path</span><span class="p">,</span> <span class="n">recreate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">pickle_module</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pickle_load_args</span><span class="o">=</span><span class="p">{}):</span>
-    <span class="n">pickle_module_arg</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">pickle_module</span><span class="o">=</span><span class="n">pickle_module</span><span class="p">)</span> <span class="k">if</span> <span class="n">pickle_module</span> <span class="k">else</span> <span class="p">{}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">restore_or_create</span><span class="p">(</span>
+    <span class="n">file_or_path</span><span class="p">,</span>
+    <span class="n">recreate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">pickle_module</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">pickle_load_args</span><span class="o">=</span><span class="p">{}</span>
+<span class="p">):</span>
+    <span class="n">pickle_module_arg</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="n">pickle_module</span><span class="o">=</span><span class="n">pickle_module</span><span class="p">)</span> <span class="k">if</span> <span class="n">pickle_module</span> <span class="k">else</span> <span class="p">{}</span>
+    <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">delegate</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
         <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
         <span class="k">def</span> <span class="nf">wrapper</span><span class="p">():</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">recreate</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
-                    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_or_path</span><span class="p">,</span> <span class="p">{</span><span class="o">**</span><span class="n">pickle_load_args</span><span class="p">,</span> <span class="o">**</span><span class="n">pickle_module_arg</span><span class="p">})</span>
+                    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+                        <span class="n">file_or_path</span><span class="p">,</span> <span class="p">{</span><span class="o">**</span><span class="n">pickle_load_args</span><span class="p">,</span> <span class="o">**</span><span class="n">pickle_module_arg</span><span class="p">}</span>
+                    <span class="p">)</span>
                 <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
                     <span class="k">pass</span>
             <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">()</span>
-            <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">file_or_path</span><span class="p">,</span> <span class="n">pickle_protocol</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">pickle_module_arg</span><span class="p">)</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span>
+                <span class="n">result</span><span class="p">,</span> <span class="n">file_or_path</span><span class="p">,</span> <span class="n">pickle_protocol</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">pickle_module_arg</span>
+            <span class="p">)</span>
             <span class="k">return</span> <span class="n">result</span>
 
         <span class="k">return</span> <span class="n">wrapper</span>
@@ -285,7 +307,11 @@ nb_path: "02_dirtymnist.ipynb"
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">loss_function</span><span class="p">(</span><span class="n">recon_x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">log_var</span><span class="p">):</span>
-    <span class="n">BCE</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">binary_cross_entropy</span><span class="p">(</span><span class="n">unwhiten_mnist</span><span class="p">(</span><span class="n">recon_x</span><span class="p">),</span> <span class="n">unwhiten_mnist</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">784</span><span class="p">),</span> <span class="n">reduction</span><span class="o">=</span><span class="s2">&quot;sum&quot;</span><span class="p">)</span>
+    <span class="n">BCE</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">binary_cross_entropy</span><span class="p">(</span>
+        <span class="n">unwhiten_mnist</span><span class="p">(</span><span class="n">recon_x</span><span class="p">),</span>
+        <span class="n">unwhiten_mnist</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">784</span><span class="p">),</span>
+        <span class="n">reduction</span><span class="o">=</span><span class="s2">&quot;sum&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
     <span class="n">KLD</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">log_var</span> <span class="o">-</span> <span class="n">mu</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">log_var</span><span class="o">.</span><span class="n">exp</span><span class="p">())</span>
     <span class="k">return</span> <span class="n">BCE</span> <span class="o">+</span> <span class="n">KLD</span>
 </pre></div>
@@ -318,7 +344,11 @@ nb_path: "02_dirtymnist.ipynb"
         <span class="n">train_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
         <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;====&gt; Epoch: </span><span class="si">{}</span><span class="s2"> Average loss: </span><span class="si">{:.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">train_loss</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="s2">&quot;====&gt; Epoch: </span><span class="si">{}</span><span class="s2"> Average loss: </span><span class="si">{:.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">epoch</span><span class="p">,</span> <span class="n">train_loss</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
 </pre></div>
 
     </div>
@@ -379,7 +409,9 @@ nb_path: "02_dirtymnist.ipynb"
         <span class="n">vae</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
 
     <span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">vae</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
-    <span class="n">scheduler</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">MultiStepLR</span><span class="p">(</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">milestones</span><span class="o">=</span><span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">65</span><span class="p">],</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+    <span class="n">scheduler</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">MultiStepLR</span><span class="p">(</span>
+        <span class="n">optimizer</span><span class="p">,</span> <span class="n">milestones</span><span class="o">=</span><span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">65</span><span class="p">],</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.2</span>
+    <span class="p">)</span>
 
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s2">&quot;./samples&quot;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">75</span><span class="p">)):</span>
@@ -390,7 +422,10 @@ nb_path: "02_dirtymnist.ipynb"
             <span class="n">z</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">z_dim</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
             <span class="c1"># print (z.shape)</span>
             <span class="n">sample</span> <span class="o">=</span> <span class="n">vae</span><span class="o">.</span><span class="n">decoder</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
-            <span class="n">save_image</span><span class="p">(</span><span class="n">unwhiten_mnist</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)),</span> <span class="s2">&quot;./samples/sample_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.png&quot;</span><span class="p">)</span>
+            <span class="n">save_image</span><span class="p">(</span>
+                <span class="n">unwhiten_mnist</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)),</span>
+                <span class="s2">&quot;./samples/sample_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.png&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">vae</span>
 
@@ -510,9 +545,13 @@ roughly one, which accelerates learning</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">pixel_histogram</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">num_bins</span><span class="p">):</span>
-    <span class="n">train_histogram</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="n">num_bins</span><span class="p">)</span>
+    <span class="n">train_histogram</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span>
+        <span class="n">samples</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="n">num_bins</span>
+    <span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">train_histogram</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">samples</span><span class="o">.</span><span class="n">numel</span><span class="p">(),</span> <span class="n">train_histogram</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">train_histogram</span><span class="p">[</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">train_histogram</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">align</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+        <span class="n">train_histogram</span><span class="p">[</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">train_histogram</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">align</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.05</span>
+    <span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">PercentFormatter</span><span class="p">(</span><span class="n">xmax</span><span class="o">=</span><span class="n">samples</span><span class="o">.</span><span class="n">numel</span><span class="p">()))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -755,7 +794,11 @@ roughly one, which accelerates learning</p>
                     <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span>
                 <span class="p">)</span>
             <span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;====&gt; Epoch: </span><span class="si">{}</span><span class="s2"> Average loss: </span><span class="si">{:.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">train_loss</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="s2">&quot;====&gt; Epoch: </span><span class="si">{}</span><span class="s2"> Average loss: </span><span class="si">{:.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">epoch</span><span class="p">,</span> <span class="n">train_loss</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">lenet_test</span><span class="p">(</span><span class="n">test_loader</span><span class="p">,</span> <span class="n">lenet</span><span class="p">):</span>
@@ -847,7 +890,9 @@ roughly one, which accelerates learning</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">pred_entropy</span><span class="p">(</span><span class="n">pre_softmaxs</span><span class="p">):</span>  <span class="c1"># shape: [MC samples from pred / ensemble, num data, classes]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">pred_entropy</span><span class="p">(</span>
+    <span class="n">pre_softmaxs</span><span class="p">,</span>
+<span class="p">):</span>  <span class="c1"># shape: [MC samples from pred / ensemble, num data, classes]</span>
     <span class="n">softmaxs</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">pre_softmaxs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">softmax</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">softmaxs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">logits</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">softmax</span><span class="p">)</span>
@@ -856,7 +901,9 @@ roughly one, which accelerates learning</p>
     <span class="k">return</span> <span class="n">nats</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">avg_entropy</span><span class="p">(</span><span class="n">pre_softmaxs</span><span class="p">):</span>  <span class="c1"># shape: [MC samples from pred / ensemble, num data, classes]</span>
+<span class="k">def</span> <span class="nf">avg_entropy</span><span class="p">(</span>
+    <span class="n">pre_softmaxs</span><span class="p">,</span>
+<span class="p">):</span>  <span class="c1"># shape: [MC samples from pred / ensemble, num data, classes]</span>
     <span class="c1"># NOTE: looking at average ent, not pred ent</span>
     <span class="n">softmax</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">pre_softmaxs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">logits</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span><span class="n">pre_softmaxs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
@@ -880,7 +927,10 @@ roughly one, which accelerates learning</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">class_indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">((</span><span class="n">mnist_train_dataset</span><span class="o">.</span><span class="n">targets</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">class_indices</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">((</span><span class="n">mnist_train_dataset</span><span class="o">.</span><span class="n">targets</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="p">]</span>
 </pre></div>
 
     </div>
@@ -915,10 +965,14 @@ roughly one, which accelerates learning</p>
         <span class="n">decoded_lerps</span> <span class="o">=</span> <span class="n">vae</span><span class="o">.</span><span class="n">decoder</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
 
         <span class="n">whitened_samples</span> <span class="o">=</span> <span class="n">whiten_mnist</span><span class="p">(</span><span class="n">decoded_lerps</span><span class="p">)</span>
-        <span class="n">lenet_pre_softmaxs</span> <span class="o">=</span> <span class="p">[</span><span class="n">lenet</span><span class="p">(</span><span class="n">whitened_samples</span><span class="o">.</span><span class="n">cuda</span><span class="p">())</span> <span class="k">for</span> <span class="n">lenet</span> <span class="ow">in</span> <span class="n">lenets</span><span class="p">]</span>
+        <span class="n">lenet_pre_softmaxs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">lenet</span><span class="p">(</span><span class="n">whitened_samples</span><span class="o">.</span><span class="n">cuda</span><span class="p">())</span> <span class="k">for</span> <span class="n">lenet</span> <span class="ow">in</span> <span class="n">lenets</span>
+        <span class="p">]</span>
         <span class="n">lenet_pre_softmaxs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">lenet_pre_softmaxs</span><span class="p">)</span>
 
-        <span class="n">batch_labels</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">lenet_pre_softmaxs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">batch_labels</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">lenet_pre_softmaxs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="n">batch_pred_entropies</span> <span class="o">=</span> <span class="n">pred_entropy</span><span class="p">(</span><span class="n">lenet_pre_softmaxs</span><span class="p">)</span>
         <span class="n">batch_avg_entropies</span> <span class="o">=</span> <span class="n">avg_entropy</span><span class="p">(</span><span class="n">lenet_pre_softmaxs</span><span class="p">)</span>
         <span class="n">batch_mi</span> <span class="o">=</span> <span class="n">batch_pred_entropies</span> <span class="o">-</span> <span class="n">batch_avg_entropies</span>
@@ -938,7 +992,10 @@ roughly one, which accelerates learning</p>
     <span class="k">return</span> <span class="n">decoded_images</span><span class="p">,</span> <span class="n">decoded_labels</span>
 
 
-<span class="n">unambiguous_decoded_images</span><span class="p">,</span> <span class="n">unambiguous_decoded_labels</span> <span class="o">=</span> <span class="n">create_unambiguous_samples</span><span class="p">()</span>
+<span class="p">(</span>
+    <span class="n">unambiguous_decoded_images</span><span class="p">,</span>
+    <span class="n">unambiguous_decoded_labels</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">=</span> <span class="n">create_unambiguous_samples</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -1069,7 +1126,12 @@ roughly one, which accelerates learning</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">balanced_mnist</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">mnist_train_loader</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ci</span><span class="p">[:</span><span class="n">smallest_class_size</span><span class="p">]]</span> <span class="k">for</span> <span class="n">ci</span> <span class="ow">in</span> <span class="n">class_indices</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">balanced_mnist</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">mnist_train_loader</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ci</span><span class="p">[:</span><span class="n">smallest_class_size</span><span class="p">]]</span>
+        <span class="k">for</span> <span class="n">ci</span> <span class="ow">in</span> <span class="n">class_indices</span>
+    <span class="p">]</span>
+<span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1161,8 +1223,15 @@ roughly one, which accelerates learning</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">vae_mnist_label_histogram</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">unambiguous_decoded_labels</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">vae_mnist_label_histogram</span><span class="p">[</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">vae_mnist_label_histogram</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">align</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">vae_mnist_label_histogram</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span>
+    <span class="n">unambiguous_decoded_labels</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+    <span class="n">vae_mnist_label_histogram</span><span class="p">[</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">vae_mnist_label_histogram</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">align</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
@@ -1233,7 +1302,12 @@ roughly one, which accelerates learning</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">balanced_vae_mnist</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">unambiguous_decoded_images</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">unambiguous_decoded_labels</span> <span class="o">==</span> <span class="n">c</span><span class="p">][:</span><span class="n">smallest_class_size</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+    <span class="p">[</span>
+        <span class="n">unambiguous_decoded_images</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">unambiguous_decoded_labels</span> <span class="o">==</span> <span class="n">c</span><span class="p">][</span>
+            <span class="p">:</span><span class="n">smallest_class_size</span>
+        <span class="p">]</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -1295,7 +1369,10 @@ roughly one, which accelerates learning</p>
 <span class="n">vae_mnist_std</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">balanced_vae_mnist</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">vae_mnist_mean</span><span class="p">,</span> <span class="n">vae_mnist_std</span><span class="p">)</span>
 
-<span class="n">vae_mnist_min</span><span class="p">,</span> <span class="n">vae_mnist_max</span> <span class="o">=</span> <span class="n">balanced_vae_mnist</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">balanced_vae_mnist</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">vae_mnist_min</span><span class="p">,</span> <span class="n">vae_mnist_max</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">balanced_vae_mnist</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+    <span class="n">balanced_vae_mnist</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+<span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">vae_mnist_min</span><span class="p">,</span> <span class="n">vae_mnist_max</span><span class="p">)</span>
 </pre></div>
 
@@ -1353,7 +1430,10 @@ tensor(-0.4242) tensor(2.8215)
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pixel_histogram</span><span class="p">(</span><span class="n">calibrated_post_process_vae_mnist</span><span class="p">(</span><span class="n">balanced_vae_mnist</span><span class="p">),</span> <span class="n">num_bins</span><span class="o">=</span><span class="n">num_histogram_bins</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pixel_histogram</span><span class="p">(</span>
+    <span class="n">calibrated_post_process_vae_mnist</span><span class="p">(</span><span class="n">balanced_vae_mnist</span><span class="p">),</span>
+    <span class="n">num_bins</span><span class="o">=</span><span class="n">num_histogram_bins</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1436,12 +1516,18 @@ tensor(-0.4242) tensor(2.8215)
     <span class="n">total_target_count</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">target_counts</span><span class="p">)</span>
 
     <span class="n">sample_progress</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">total_target_count</span><span class="p">))</span>
-    <span class="k">while</span> <span class="nb">any</span><span class="p">(</span><span class="n">count</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bucket_counts</span><span class="p">,</span> <span class="n">target_counts</span><span class="p">)):</span>
+    <span class="k">while</span> <span class="nb">any</span><span class="p">(</span>
+        <span class="n">count</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bucket_counts</span><span class="p">,</span> <span class="n">target_counts</span><span class="p">)</span>
+    <span class="p">):</span>
         <span class="n">z</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
         <span class="n">decoded_lerps</span> <span class="o">=</span> <span class="n">vae</span><span class="o">.</span><span class="n">decoder</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
 
-        <span class="n">whitened_samples</span> <span class="o">=</span> <span class="n">whiten_mnist</span><span class="p">(</span><span class="n">calibrated_post_process_vae_mnist</span><span class="p">(</span><span class="n">decoded_lerps</span><span class="p">))</span>
-        <span class="n">lenet_pre_softmaxs</span> <span class="o">=</span> <span class="p">[</span><span class="n">lenet</span><span class="p">(</span><span class="n">whitened_samples</span><span class="o">.</span><span class="n">cuda</span><span class="p">())</span> <span class="k">for</span> <span class="n">lenet</span> <span class="ow">in</span> <span class="n">lenets</span><span class="p">]</span>
+        <span class="n">whitened_samples</span> <span class="o">=</span> <span class="n">whiten_mnist</span><span class="p">(</span>
+            <span class="n">calibrated_post_process_vae_mnist</span><span class="p">(</span><span class="n">decoded_lerps</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">lenet_pre_softmaxs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">lenet</span><span class="p">(</span><span class="n">whitened_samples</span><span class="o">.</span><span class="n">cuda</span><span class="p">())</span> <span class="k">for</span> <span class="n">lenet</span> <span class="ow">in</span> <span class="n">lenets</span>
+        <span class="p">]</span>
         <span class="n">lenet_pre_softmaxs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">lenet_pre_softmaxs</span><span class="p">)</span>
         <span class="n">batch_pred_entropies</span> <span class="o">=</span> <span class="n">pred_entropy</span><span class="p">(</span><span class="n">lenet_pre_softmaxs</span><span class="p">)</span>
         <span class="n">batch_avg_entropies</span> <span class="o">=</span> <span class="n">avg_entropy</span><span class="p">(</span><span class="n">lenet_pre_softmaxs</span><span class="p">)</span>
@@ -1450,9 +1536,19 @@ tensor(-0.4242) tensor(2.8215)
         <span class="n">id_samples</span> <span class="o">=</span> <span class="n">batch_mi</span> <span class="o">&lt;=</span> <span class="n">mi_threshold</span>
 
         <span class="k">for</span> <span class="n">bucket_index</span><span class="p">,</span> <span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">bucket</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span>
-            <span class="nb">zip</span><span class="p">(</span><span class="n">bucket_counts</span><span class="p">,</span> <span class="n">target_counts</span><span class="p">,</span> <span class="n">buckets</span><span class="p">,</span> <span class="n">bin_edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">bin_edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+            <span class="nb">zip</span><span class="p">(</span>
+                <span class="n">bucket_counts</span><span class="p">,</span>
+                <span class="n">target_counts</span><span class="p">,</span>
+                <span class="n">buckets</span><span class="p">,</span>
+                <span class="n">bin_edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">bin_edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
+            <span class="p">)</span>
         <span class="p">):</span>
-            <span class="n">bucket_samples</span> <span class="o">=</span> <span class="n">id_samples</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lower</span> <span class="o">&lt;=</span> <span class="n">batch_pred_entropies</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">batch_pred_entropies</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="p">)</span>
+            <span class="n">bucket_samples</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">id_samples</span>
+                <span class="o">&amp;</span> <span class="p">(</span><span class="n">lower</span> <span class="o">&lt;=</span> <span class="n">batch_pred_entropies</span><span class="p">)</span>
+                <span class="o">&amp;</span> <span class="p">(</span><span class="n">batch_pred_entropies</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="p">)</span>
+            <span class="p">)</span>
             <span class="n">num_new_samples</span> <span class="o">=</span> <span class="n">bucket_samples</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
 
             <span class="k">if</span> <span class="n">num_new_samples</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">count</span> <span class="o">&gt;=</span> <span class="n">target</span><span class="p">:</span>
@@ -1492,7 +1588,9 @@ tensor(-0.4242) tensor(2.8215)
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@restore_or_create</span><span class="p">(</span><span class="s2">&quot;stratified_ambiguous_samples_convex_mixture.pt&quot;</span><span class="p">,</span> <span class="n">recreate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@restore_or_create</span><span class="p">(</span>
+    <span class="s2">&quot;stratified_ambiguous_samples_convex_mixture.pt&quot;</span><span class="p">,</span> <span class="n">recreate</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
 <span class="nd">@torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">()</span>
 <span class="k">def</span> <span class="nf">create_stratified_ambiguous_mixture_samples</span><span class="p">():</span>
     <span class="n">mi_threshold</span> <span class="o">=</span> <span class="mf">0.1</span>
@@ -1513,7 +1611,9 @@ tensor(-0.4242) tensor(2.8215)
     <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">65536</span> <span class="o">//</span> <span class="n">num_samples_per_pair</span>
 
     <span class="n">sample_progress</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">total_target_count</span><span class="p">))</span>
-    <span class="k">while</span> <span class="nb">any</span><span class="p">(</span><span class="n">count</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bucket_counts</span><span class="p">,</span> <span class="n">target_counts</span><span class="p">)):</span>
+    <span class="k">while</span> <span class="nb">any</span><span class="p">(</span>
+        <span class="n">count</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bucket_counts</span><span class="p">,</span> <span class="n">target_counts</span><span class="p">)</span>
+    <span class="p">):</span>
         <span class="k">for</span> <span class="n">num_labels</span> <span class="ow">in</span> <span class="n">num_label_range</span><span class="p">:</span>
             <span class="n">num_new_samples</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -1521,8 +1621,12 @@ tensor(-0.4242) tensor(2.8215)
             <span class="n">batch_data</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">batch_size</span><span class="p">):</span>
                 <span class="n">label</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">num_labels</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-                <span class="n">batch_indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">class_indices</span><span class="p">[</span><span class="n">c</span><span class="p">]),</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">label</span><span class="p">]</span>
-                <span class="n">data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">train_dataset</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">batch_indices</span><span class="p">])</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+                <span class="n">batch_indices</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">class_indices</span><span class="p">[</span><span class="n">c</span><span class="p">]),</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">label</span>
+                <span class="p">]</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+                    <span class="p">[</span><span class="n">train_dataset</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">batch_indices</span><span class="p">]</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
                 <span class="n">label</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">label</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
                 <span class="n">batch_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
                 <span class="n">batch_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
@@ -1532,18 +1636,26 @@ tensor(-0.4242) tensor(2.8215)
 
             <span class="n">mu</span><span class="p">,</span> <span class="n">logvar</span> <span class="o">=</span> <span class="n">vae</span><span class="o">.</span><span class="n">encoder</span><span class="p">(</span><span class="n">batch_data</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">784</span><span class="p">))</span>
 
-            <span class="n">mix_weights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">batch_size</span> <span class="o">*</span> <span class="n">num_samples_per_pair</span><span class="p">,</span> <span class="n">num_labels</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+            <span class="n">mix_weights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span>
+                <span class="n">batch_size</span> <span class="o">*</span> <span class="n">num_samples_per_pair</span><span class="p">,</span> <span class="n">num_labels</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
             <span class="n">mix_weights</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="n">mix_weights</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
             <span class="n">mix_weights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">mix_weights</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">mix_weights</span> <span class="o">=</span> <span class="n">mix_weights</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">mix_weights</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-            <span class="n">mixed_encodings</span> <span class="o">=</span> <span class="n">mix_weights</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">num_samples_per_pair</span><span class="p">,</span> <span class="n">num_labels</span><span class="p">)</span> <span class="o">@</span> <span class="n">mu</span><span class="o">.</span><span class="n">view</span><span class="p">(</span>
-                <span class="n">batch_size</span><span class="p">,</span> <span class="n">num_labels</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="n">mixed_encodings</span> <span class="o">=</span> <span class="n">mix_weights</span><span class="o">.</span><span class="n">view</span><span class="p">(</span>
+                <span class="n">batch_size</span><span class="p">,</span> <span class="n">num_samples_per_pair</span><span class="p">,</span> <span class="n">num_labels</span>
+            <span class="p">)</span> <span class="o">@</span> <span class="n">mu</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">num_labels</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">decoded_lerps</span> <span class="o">=</span> <span class="n">vae</span><span class="o">.</span><span class="n">decoder</span><span class="p">(</span><span class="n">mixed_encodings</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span>
+                <span class="n">batch_size</span> <span class="o">*</span> <span class="n">num_samples_per_pair</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span>
             <span class="p">)</span>
-            <span class="n">decoded_lerps</span> <span class="o">=</span> <span class="n">vae</span><span class="o">.</span><span class="n">decoder</span><span class="p">(</span><span class="n">mixed_encodings</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span> <span class="o">*</span> <span class="n">num_samples_per_pair</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
 
-            <span class="n">whitened_samples</span> <span class="o">=</span> <span class="n">whiten_mnist</span><span class="p">(</span><span class="n">calibrated_post_process_vae_mnist</span><span class="p">(</span><span class="n">decoded_lerps</span><span class="p">))</span>
-            <span class="n">lenet_pre_softmaxs</span> <span class="o">=</span> <span class="p">[</span><span class="n">lenet</span><span class="p">(</span><span class="n">whitened_samples</span><span class="o">.</span><span class="n">cuda</span><span class="p">())</span> <span class="k">for</span> <span class="n">lenet</span> <span class="ow">in</span> <span class="n">lenets</span><span class="p">]</span>
+            <span class="n">whitened_samples</span> <span class="o">=</span> <span class="n">whiten_mnist</span><span class="p">(</span>
+                <span class="n">calibrated_post_process_vae_mnist</span><span class="p">(</span><span class="n">decoded_lerps</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">lenet_pre_softmaxs</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">lenet</span><span class="p">(</span><span class="n">whitened_samples</span><span class="o">.</span><span class="n">cuda</span><span class="p">())</span> <span class="k">for</span> <span class="n">lenet</span> <span class="ow">in</span> <span class="n">lenets</span>
+            <span class="p">]</span>
             <span class="n">lenet_pre_softmaxs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">lenet_pre_softmaxs</span><span class="p">)</span>
             <span class="n">batch_pred_entropies</span> <span class="o">=</span> <span class="n">pred_entropy</span><span class="p">(</span><span class="n">lenet_pre_softmaxs</span><span class="p">)</span>
             <span class="n">batch_avg_entropies</span> <span class="o">=</span> <span class="n">avg_entropy</span><span class="p">(</span><span class="n">lenet_pre_softmaxs</span><span class="p">)</span>
@@ -1551,10 +1663,26 @@ tensor(-0.4242) tensor(2.8215)
 
             <span class="n">id_samples</span> <span class="o">=</span> <span class="n">batch_mi</span> <span class="o">&lt;=</span> <span class="n">mi_threshold</span>
 
-            <span class="k">for</span> <span class="n">bucket_index</span><span class="p">,</span> <span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">bucket</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span>
-                <span class="nb">zip</span><span class="p">(</span><span class="n">bucket_counts</span><span class="p">,</span> <span class="n">target_counts</span><span class="p">,</span> <span class="n">buckets</span><span class="p">,</span> <span class="n">bin_edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">bin_edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+            <span class="k">for</span> <span class="n">bucket_index</span><span class="p">,</span> <span class="p">(</span>
+                <span class="n">count</span><span class="p">,</span>
+                <span class="n">target</span><span class="p">,</span>
+                <span class="n">bucket</span><span class="p">,</span>
+                <span class="n">lower</span><span class="p">,</span>
+                <span class="n">upper</span><span class="p">,</span>
+            <span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span>
+                <span class="nb">zip</span><span class="p">(</span>
+                    <span class="n">bucket_counts</span><span class="p">,</span>
+                    <span class="n">target_counts</span><span class="p">,</span>
+                    <span class="n">buckets</span><span class="p">,</span>
+                    <span class="n">bin_edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                    <span class="n">bin_edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
+                <span class="p">)</span>
             <span class="p">):</span>
-                <span class="n">bucket_samples</span> <span class="o">=</span> <span class="n">id_samples</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lower</span> <span class="o">&lt;=</span> <span class="n">batch_pred_entropies</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">batch_pred_entropies</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="p">)</span>
+                <span class="n">bucket_samples</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="n">id_samples</span>
+                    <span class="o">&amp;</span> <span class="p">(</span><span class="n">lower</span> <span class="o">&lt;=</span> <span class="n">batch_pred_entropies</span><span class="p">)</span>
+                    <span class="o">&amp;</span> <span class="p">(</span><span class="n">batch_pred_entropies</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="p">)</span>
+                <span class="p">)</span>
                 <span class="n">num_new_samples</span> <span class="o">=</span> <span class="n">bucket_samples</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
 
                 <span class="k">if</span> <span class="n">num_new_samples</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">count</span> <span class="o">&gt;=</span> <span class="n">target</span><span class="p">:</span>
@@ -1571,7 +1699,9 @@ tensor(-0.4242) tensor(2.8215)
     <span class="k">return</span> <span class="n">buckets</span>
 
 
-<span class="n">stratified_ambiguous_samples_convex_mixture</span> <span class="o">=</span> <span class="n">create_stratified_ambiguous_mixture_samples</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
+<span class="n">stratified_ambiguous_samples_convex_mixture</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">create_stratified_ambiguous_mixture_samples</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
+<span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1638,7 +1768,9 @@ tensor(-0.4242) tensor(2.8215)
     <span class="n">predicted_labels</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">for</span> <span class="n">decoded_image_batch</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="mi">32768</span><span class="p">)):</span>
-        <span class="n">whitened_sample</span> <span class="o">=</span> <span class="n">whiten_mnist</span><span class="p">(</span><span class="n">calibrated_post_process_vae_mnist</span><span class="p">(</span><span class="n">decoded_image_batch</span><span class="o">.</span><span class="n">cuda</span><span class="p">()))</span>
+        <span class="n">whitened_sample</span> <span class="o">=</span> <span class="n">whiten_mnist</span><span class="p">(</span>
+            <span class="n">calibrated_post_process_vae_mnist</span><span class="p">(</span><span class="n">decoded_image_batch</span><span class="o">.</span><span class="n">cuda</span><span class="p">())</span>
+        <span class="p">)</span>
         <span class="n">lenet_pre_softmaxs</span> <span class="o">=</span> <span class="p">[</span><span class="n">lenet</span><span class="p">(</span><span class="n">whitened_sample</span><span class="p">)</span> <span class="k">for</span> <span class="n">lenet</span> <span class="ow">in</span> <span class="n">lenets</span><span class="p">]</span>
         <span class="n">lenet_pre_softmaxs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">lenet_pre_softmaxs</span><span class="p">)</span>
 
@@ -1648,7 +1780,9 @@ tensor(-0.4242) tensor(2.8215)
         <span class="n">pred_entropies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">batch_pred_entropies</span><span class="o">.</span><span class="n">cpu</span><span class="p">())</span>
         <span class="n">avg_entropies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">batch_avg_entropies</span><span class="o">.</span><span class="n">cpu</span><span class="p">())</span>
 
-        <span class="n">lenet_pre_softmaxs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">lenet_pre_softmaxs</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># swap MC samples with batch dims</span>
+        <span class="n">lenet_pre_softmaxs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span>
+            <span class="n">lenet_pre_softmaxs</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+        <span class="p">)</span>  <span class="c1"># swap MC samples with batch dims</span>
         <span class="n">softmax_logits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lenet_pre_softmaxs</span><span class="o">.</span><span class="n">cpu</span><span class="p">())</span>
 
         <span class="n">batch_sm_pred</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">lenet_pre_softmaxs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
@@ -1677,9 +1811,9 @@ tensor(-0.4242) tensor(2.8215)
     <span class="p">)</span>
 
 
-<span class="n">ambiguous_samples_evaluation</span> <span class="o">=</span> <span class="n">restore_or_create</span><span class="p">(</span><span class="s2">&quot;ambiguous_samples_evaluation.pt&quot;</span><span class="p">,</span> <span class="n">recreate</span><span class="o">=</span><span class="kc">False</span><span class="p">)(</span>
-    <span class="k">lambda</span><span class="p">:</span> <span class="n">evaluate_samples</span><span class="p">(</span><span class="n">stratified_ambiguous_samples</span><span class="p">)</span>
-<span class="p">)()</span>
+<span class="n">ambiguous_samples_evaluation</span> <span class="o">=</span> <span class="n">restore_or_create</span><span class="p">(</span>
+    <span class="s2">&quot;ambiguous_samples_evaluation.pt&quot;</span><span class="p">,</span> <span class="n">recreate</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">evaluate_samples</span><span class="p">(</span><span class="n">stratified_ambiguous_samples</span><span class="p">))()</span>
 <span class="n">ambiguous_samples_evaluation_convex_mixture</span> <span class="o">=</span> <span class="n">restore_or_create</span><span class="p">(</span>
     <span class="s2">&quot;convex_mixture_ambiguous_samples_evaluation.pt&quot;</span><span class="p">,</span> <span class="n">recreate</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">evaluate_samples</span><span class="p">(</span><span class="n">stratified_ambiguous_samples_convex_mixture</span><span class="p">))()</span>
@@ -1712,7 +1846,9 @@ tensor(-0.4242) tensor(2.8215)
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">pred_entropies</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
+    <span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">pred_entropies</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span>
+<span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Predictive Entropy of `ambiguous_samples_evaluation_convex_mixture`&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -1767,13 +1903,19 @@ tensor(-0.4242) tensor(2.8215)
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">show_stratified_samples</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">pred_entropies</span><span class="p">,</span> <span class="n">num_pe_bins</span><span class="p">,</span> <span class="n">num_bin_samples</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">show_stratified_samples</span><span class="p">(</span>
+    <span class="n">samples</span><span class="p">,</span> <span class="n">pred_entropies</span><span class="p">,</span> <span class="n">num_pe_bins</span><span class="p">,</span> <span class="n">num_bin_samples</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">):</span>
     <span class="n">stratified_samples</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram_bin_edges</span><span class="p">(</span><span class="n">pred_entropies</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">num_pe_bins</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="nb">range</span><span class="p">)</span>
+    <span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram_bin_edges</span><span class="p">(</span>
+        <span class="n">pred_entropies</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">num_pe_bins</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="nb">range</span>
+    <span class="p">)</span>
     <span class="k">for</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
         <span class="n">bucket_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">pred_entropies</span> <span class="o">&gt;=</span> <span class="n">lower</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pred_entropies</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="p">)</span>
         <span class="n">bucket_samples</span> <span class="o">=</span> <span class="n">samples</span><span class="p">[</span><span class="n">bucket_mask</span><span class="p">]</span>
-        <span class="n">sample_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bucket_samples</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">num_bin_samples</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">sample_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">bucket_samples</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">num_bin_samples</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
         <span class="n">row_samples</span> <span class="o">=</span> <span class="n">bucket_samples</span><span class="p">[</span><span class="n">sample_indices</span><span class="p">]</span>
         <span class="n">stratified_samples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row_samples</span><span class="p">)</span>
 
@@ -1781,7 +1923,9 @@ tensor(-0.4242) tensor(2.8215)
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">num_pe_bins</span><span class="p">,</span> <span class="n">num_bin_samples</span><span class="p">))</span>
     <span class="n">show</span><span class="p">(</span>
         <span class="n">make_grid</span><span class="p">(</span>
-            <span class="n">calibrated_post_process_vae_mnist</span><span class="p">(</span><span class="n">stratified_samples</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)),</span>
+            <span class="n">calibrated_post_process_vae_mnist</span><span class="p">(</span>
+                <span class="n">stratified_samples</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+            <span class="p">),</span>
             <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
             <span class="n">nrow</span><span class="o">=</span><span class="n">num_bin_samples</span><span class="p">,</span>
         <span class="p">)</span>
@@ -1790,7 +1934,11 @@ tensor(-0.4242) tensor(2.8215)
 
 
 <span class="n">show_stratified_samples</span><span class="p">(</span>
-    <span class="n">stratified_ambiguous_samples</span><span class="p">,</span> <span class="n">ambiguous_samples_evaluation</span><span class="o">.</span><span class="n">pred_entropies</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">]</span>
+    <span class="n">stratified_ambiguous_samples</span><span class="p">,</span>
+    <span class="n">ambiguous_samples_evaluation</span><span class="o">.</span><span class="n">pred_entropies</span><span class="p">,</span>
+    <span class="mi">15</span><span class="p">,</span>
+    <span class="mi">16</span><span class="p">,</span>
+    <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">],</span>
 <span class="p">)</span>
 <span class="n">show_stratified_samples</span><span class="p">(</span>
     <span class="n">stratified_ambiguous_samples_convex_mixture</span><span class="p">,</span>
@@ -1853,7 +2001,11 @@ tensor(-0.4242) tensor(2.8215)
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">pred_entropies</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mf">1.6</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
+    <span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">pred_entropies</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span>
+    <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mf">1.6</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">],</span>
+<span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1902,7 +2054,11 @@ tensor(-0.4242) tensor(2.8215)
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">pred_entropies</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
+    <span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">pred_entropies</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span>
+    <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">],</span>
+<span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1980,7 +2136,9 @@ tensor(-0.4242) tensor(2.8215)
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">show_label_buckets</span><span class="p">(</span><span class="n">entropies</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">num_bins</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram_bin_edges</span><span class="p">(</span><span class="n">entropies</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="n">num_bins</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="nb">range</span><span class="p">)</span>
+    <span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram_bin_edges</span><span class="p">(</span>
+        <span class="n">entropies</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="n">num_bins</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="nb">range</span>
+    <span class="p">)</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">num_bins</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:])):</span>
@@ -1994,7 +2152,10 @@ tensor(-0.4242) tensor(2.8215)
 
 
 <span class="n">show_label_buckets</span><span class="p">(</span>
-    <span class="n">ambiguous_samples_evaluation</span><span class="o">.</span><span class="n">pred_entropies</span><span class="p">,</span> <span class="n">ambiguous_samples_evaluation</span><span class="o">.</span><span class="n">single_labels</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">]</span>
+    <span class="n">ambiguous_samples_evaluation</span><span class="o">.</span><span class="n">pred_entropies</span><span class="p">,</span>
+    <span class="n">ambiguous_samples_evaluation</span><span class="o">.</span><span class="n">single_labels</span><span class="p">,</span>
+    <span class="mi">10</span><span class="p">,</span>
+    <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">],</span>
 <span class="p">)</span>
 <span class="n">show_label_buckets</span><span class="p">(</span>
     <span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">pred_entropies</span><span class="p">,</span>
@@ -2058,7 +2219,9 @@ tensor(-0.4242) tensor(2.8215)
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
 
 
-<span class="k">def</span> <span class="nf">show_probs_vs_entropy</span><span class="p">(</span><span class="n">evaluation</span><span class="p">:</span> <span class="n">SampleEvaluation</span><span class="p">,</span> <span class="n">num_bins</span><span class="p">,</span> <span class="n">entropy_range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">show_probs_vs_entropy</span><span class="p">(</span>
+    <span class="n">evaluation</span><span class="p">:</span> <span class="n">SampleEvaluation</span><span class="p">,</span> <span class="n">num_bins</span><span class="p">,</span> <span class="n">entropy_range</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">):</span>
     <span class="n">entropies</span> <span class="o">=</span> <span class="n">evaluation</span><span class="o">.</span><span class="n">pred_entropies</span>
     <span class="n">predictions</span> <span class="o">=</span> <span class="n">evaluation</span><span class="o">.</span><span class="n">predictions</span>
 
@@ -2079,9 +2242,13 @@ tensor(-0.4242) tensor(2.8215)
         <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">use_gridspec</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 
 
-<span class="n">show_probs_vs_entropy</span><span class="p">(</span><span class="n">ambiguous_samples_evaluation</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">entropy_range</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">])</span>
+<span class="n">show_probs_vs_entropy</span><span class="p">(</span>
+    <span class="n">ambiguous_samples_evaluation</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">entropy_range</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">]</span>
+<span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;`ambiguous_samples_evaluation`&quot;</span><span class="p">)</span>
-<span class="n">show_probs_vs_entropy</span><span class="p">(</span><span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">entropy_range</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">])</span>
+<span class="n">show_probs_vs_entropy</span><span class="p">(</span>
+    <span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">entropy_range</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">]</span>
+<span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;`ambiguous_samples_evaluation_convex_mixture`&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -2193,12 +2360,16 @@ The second approach samples stochastically but aiming towards creating a uniform
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">show_prob_buckets</span><span class="p">(</span><span class="n">entropies</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">num_bins</span><span class="p">,</span> <span class="n">entropy_range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram_bin_edges</span><span class="p">(</span><span class="n">entropies</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="n">num_bins</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="n">entropy_range</span><span class="p">)</span>
+    <span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram_bin_edges</span><span class="p">(</span>
+        <span class="n">entropies</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="n">num_bins</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="n">entropy_range</span>
+    <span class="p">)</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">num_bins</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:])):</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_bins</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">bucket_prob_distribution</span> <span class="o">=</span> <span class="n">predictions</span><span class="p">[(</span><span class="n">lower</span> <span class="o">&lt;=</span> <span class="n">entropies</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">entropies</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="p">)]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">bucket_prob_distribution</span> <span class="o">=</span> <span class="n">predictions</span><span class="p">[</span>
+            <span class="p">(</span><span class="n">lower</span> <span class="o">&lt;=</span> <span class="n">entropies</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">entropies</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="p">)</span>
+        <span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">entropy</span><span class="p">(</span><span class="n">bucket_prob_distribution</span><span class="p">))</span>
         <span class="c1"># plt.yscale(&quot;log&quot;)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">lower</span><span class="si">:</span><span class="s2">.2</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">upper</span><span class="si">:</span><span class="s2">.2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -2243,14 +2414,18 @@ The second approach samples stochastically but aiming towards creating a uniform
 
     <span class="n">balanced_indices</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="k">for</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))),</span> <span class="n">total</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+        <span class="nb">reversed</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))),</span> <span class="n">total</span><span class="o">=</span><span class="mi">10</span>
+    <span class="p">):</span>
         <span class="n">num_bucket_samples</span> <span class="o">=</span> <span class="n">max_samples</span> <span class="o">//</span> <span class="n">num_bins</span> <span class="o">//</span> <span class="n">num_labels</span>
         <span class="n">prob_masses</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 
         <span class="n">bucket_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">lower</span> <span class="o">&lt;=</span> <span class="n">entropies</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">entropies</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="p">)</span>
         <span class="n">bucket_indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">bucket_mask</span><span class="p">,</span> <span class="n">as_tuple</span><span class="o">=</span><span class="kc">False</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">]</span>
 
-        <span class="n">bucket_stochastic_batches</span> <span class="o">=</span> <span class="n">num_stochastic_batches</span> <span class="o">*</span> <span class="mi">181243</span> <span class="o">//</span> <span class="nb">len</span><span class="p">(</span><span class="n">bucket_indices</span><span class="p">)</span>
+        <span class="n">bucket_stochastic_batches</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">num_stochastic_batches</span> <span class="o">*</span> <span class="mi">181243</span> <span class="o">//</span> <span class="nb">len</span><span class="p">(</span><span class="n">bucket_indices</span><span class="p">)</span>
+        <span class="p">)</span>
 
         <span class="c1"># plt.hist(entropies[bucket_indices].numpy(), bins=10, range=[0.1, 1.6])</span>
 
@@ -2259,9 +2434,13 @@ The second approach samples stochastically but aiming towards creating a uniform
         <span class="n">bucket_predictions</span> <span class="o">=</span> <span class="n">predictions</span><span class="p">[</span><span class="n">bucket_indices</span><span class="p">]</span>
         <span class="n">bucket_avg_distribution</span> <span class="o">=</span> <span class="n">bucket_predictions</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-        <span class="n">bucket_mean_dist</span> <span class="o">=</span> <span class="p">(</span><span class="n">bucket_predictions</span> <span class="o">+</span> <span class="n">bucket_avg_distribution</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:])</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">bucket_mean_dist</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">bucket_predictions</span> <span class="o">+</span> <span class="n">bucket_avg_distribution</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
 
-        <span class="n">bucket_weights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">kl</span><span class="p">(</span><span class="n">bucket_predictions</span><span class="p">,</span> <span class="n">bucket_avg_distribution</span><span class="p">))</span>
+        <span class="n">bucket_weights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span>
+            <span class="n">kl</span><span class="p">(</span><span class="n">bucket_predictions</span><span class="p">,</span> <span class="n">bucket_avg_distribution</span><span class="p">)</span>
+        <span class="p">)</span>
 
         <span class="n">batch_indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span>
             <span class="p">[</span>
@@ -2279,10 +2458,16 @@ The second approach samples stochastically but aiming towards creating a uniform
 
         <span class="n">bucket_stochastic_batches</span> <span class="o">=</span> <span class="n">batch_indices</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-        <span class="n">batch_indices_BNC</span> <span class="o">=</span> <span class="n">batch_indices</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">((</span><span class="n">bucket_stochastic_batches</span><span class="p">,</span> <span class="n">num_bucket_samples</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
-        <span class="n">predictions_BNC</span> <span class="o">=</span> <span class="n">bucket_predictions</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">((</span><span class="n">bucket_stochastic_batches</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+        <span class="n">batch_indices_BNC</span> <span class="o">=</span> <span class="n">batch_indices</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">bucket_stochastic_batches</span><span class="p">,</span> <span class="n">num_bucket_samples</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">predictions_BNC</span> <span class="o">=</span> <span class="n">bucket_predictions</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">bucket_stochastic_batches</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="p">)</span>
 
-        <span class="n">batch_prob_mass</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">predictions_BNC</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">batch_indices_BNC</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">batch_prob_mass</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
+            <span class="n">predictions_BNC</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">batch_indices_BNC</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">batch_entropy</span> <span class="o">=</span> <span class="n">entropy</span><span class="p">(</span><span class="n">batch_prob_mass</span><span class="p">)</span>
 
         <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">lower</span><span class="p">)</span>
@@ -2543,8 +2728,12 @@ Sampling 1600 out of 181430
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">show_prob_buckets</span><span class="p">(</span>
-    <span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">pred_entropies</span><span class="p">[</span><span class="n">fully_stochastic_balanced_indices</span><span class="p">],</span>
-    <span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">predictions</span><span class="p">[</span><span class="n">fully_stochastic_balanced_indices</span><span class="p">],</span>
+    <span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">pred_entropies</span><span class="p">[</span>
+        <span class="n">fully_stochastic_balanced_indices</span>
+    <span class="p">],</span>
+    <span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">predictions</span><span class="p">[</span>
+        <span class="n">fully_stochastic_balanced_indices</span>
+    <span class="p">],</span>
     <span class="mi">10</span><span class="p">,</span>
     <span class="n">entropy_range</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">],</span>
 <span class="p">)</span>
@@ -2635,17 +2824,19 @@ D_{KL}(p_\text{total}(p')||U) &amp;= H(U) - H(p_\text{new}(p'))
 
     <span class="n">num_bins</span> <span class="o">=</span> <span class="mi">10</span>
     <span class="n">num_labels</span> <span class="o">=</span> <span class="mi">10</span>
-    
+
     <span class="n">stratified_indices</span> <span class="o">=</span> <span class="p">[]</span>
-    
-    <span class="n">gammas</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">1.3</span><span class="p">,</span><span class="mf">1.3</span><span class="p">,</span><span class="mf">1.4</span><span class="p">,</span><span class="mf">1.4</span><span class="p">,</span><span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+    <span class="n">gammas</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
 
     <span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram_bin_edges</span><span class="p">([],</span> <span class="n">bins</span><span class="o">=</span><span class="n">num_bins</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">])</span>
-    <span class="k">for</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">,</span> <span class="n">gamma</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">gammas</span><span class="p">))),</span> <span class="n">total</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">,</span> <span class="n">gamma</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+        <span class="nb">reversed</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">gammas</span><span class="p">))),</span> <span class="n">total</span><span class="o">=</span><span class="mi">10</span>
+    <span class="p">):</span>
         <span class="n">num_bucket_samples</span> <span class="o">=</span> <span class="n">max_samples</span> <span class="o">//</span> <span class="n">num_bins</span> <span class="o">//</span> <span class="n">num_labels</span>
         <span class="n">prob_masses</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 
-        <span class="n">bucket_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">lower</span> <span class="o">&lt;=</span> <span class="n">entropies</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">entropies</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="p">)</span>            
+        <span class="n">bucket_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">lower</span> <span class="o">&lt;=</span> <span class="n">entropies</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">entropies</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">stratified_indices</span><span class="p">:</span>
             <span class="n">bucket_mask</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">stratified_indices</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">bucket_indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">bucket_mask</span><span class="p">,</span> <span class="n">as_tuple</span><span class="o">=</span><span class="kc">False</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">]</span>
@@ -2658,16 +2849,22 @@ D_{KL}(p_\text{total}(p')||U) &amp;= H(U) - H(p_\text{new}(p'))
         <span class="n">batch_candidates</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bucket_indices</span><span class="p">)))</span>
 
         <span class="k">for</span> <span class="n">batch_size</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">num_bucket_samples</span><span class="p">))):</span>
-            <span class="n">batch_sum_prediction</span> <span class="o">=</span> <span class="n">bucket_predictions</span><span class="p">[</span><span class="n">batch_indices</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">double</span><span class="p">()</span>
+            <span class="n">batch_sum_prediction</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">bucket_predictions</span><span class="p">[</span><span class="n">batch_indices</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">double</span><span class="p">()</span>
+            <span class="p">)</span>
 
-            <span class="n">candidate_avg_predictions</span> <span class="o">=</span> <span class="p">(</span><span class="n">batch_sum_prediction</span> <span class="o">+</span> <span class="n">bucket_predictions</span><span class="p">[</span><span class="n">batch_candidates</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">batch_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">candidate_avg_predictions</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">batch_sum_prediction</span> <span class="o">+</span> <span class="n">bucket_predictions</span><span class="p">[</span><span class="n">batch_candidates</span><span class="p">]</span>
+            <span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">batch_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
             <span class="n">candidate_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">-</span> <span class="n">entropy</span><span class="p">(</span><span class="n">candidate_avg_predictions</span><span class="p">)</span>
 
             <span class="n">tau</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">batch_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="n">gamma</span>
             <span class="k">if</span> <span class="n">tau</span> <span class="o">&gt;</span> <span class="mf">1e-3</span><span class="p">:</span>
                 <span class="n">candidate_weights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">candidate_scores</span> <span class="o">/</span> <span class="n">tau</span><span class="p">)</span>
                 <span class="k">try</span><span class="p">:</span>
-                    <span class="n">index</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span><span class="n">candidate_weights</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">replacement</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                    <span class="n">index</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span>
+                        <span class="n">candidate_weights</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">replacement</span><span class="o">=</span><span class="kc">False</span>
+                    <span class="p">)</span>
                 <span class="k">except</span><span class="p">:</span>
                     <span class="nb">print</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span>
                     <span class="k">raise</span>
@@ -2740,7 +2937,11 @@ tensor(2.3026, dtype=torch.float64)
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
-    <span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">pred_entropies</span><span class="p">[</span><span class="n">balanced_indices</span><span class="p">]</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">]</span>
+    <span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">pred_entropies</span><span class="p">[</span>
+        <span class="n">balanced_indices</span>
+    <span class="p">]</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span>
+    <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">],</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -2796,7 +2997,9 @@ tensor(2.3026, dtype=torch.float64)
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">show_prob_buckets</span><span class="p">(</span>
-    <span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">pred_entropies</span><span class="p">[</span><span class="n">balanced_indices</span><span class="p">],</span>
+    <span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">pred_entropies</span><span class="p">[</span>
+        <span class="n">balanced_indices</span>
+    <span class="p">],</span>
     <span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">predictions</span><span class="p">[</span><span class="n">balanced_indices</span><span class="p">],</span>
     <span class="mi">10</span><span class="p">,</span>
     <span class="n">entropy_range</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">],</span>
@@ -2858,7 +3061,12 @@ tensor(2.2090)
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">show_prob_buckets</span><span class="p">(</span><span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">pred_entropies</span><span class="p">,</span> <span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">predictions</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">entropy_range</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">show_prob_buckets</span><span class="p">(</span>
+    <span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">pred_entropies</span><span class="p">,</span>
+    <span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">predictions</span><span class="p">,</span>
+    <span class="mi">10</span><span class="p">,</span>
+    <span class="n">entropy_range</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">],</span>
+<span class="p">)</span>
 </pre></div>
 
     </div>
@@ -2918,7 +3126,9 @@ tensor(2.0120)
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">show_stratified_samples</span><span class="p">(</span>
     <span class="n">stratified_ambiguous_samples_convex_mixture</span><span class="p">[</span><span class="n">balanced_indices</span><span class="p">],</span>
-    <span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">pred_entropies</span><span class="p">[</span><span class="n">balanced_indices</span><span class="p">],</span>
+    <span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">pred_entropies</span><span class="p">[</span>
+        <span class="n">balanced_indices</span>
+    <span class="p">],</span>
     <span class="mi">15</span><span class="p">,</span>
     <span class="mi">16</span><span class="p">,</span>
     <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">],</span>
@@ -2964,7 +3174,9 @@ tensor(2.0120)
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">shuffled_balanced_amnist_indices</span> <span class="o">=</span> <span class="n">balanced_indices</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">randperm</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">balanced_indices</span><span class="p">))]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">shuffled_balanced_amnist_indices</span> <span class="o">=</span> <span class="n">balanced_indices</span><span class="p">[</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">randperm</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">balanced_indices</span><span class="p">))</span>
+<span class="p">]</span>
 </pre></div>
 
     </div>
@@ -2981,7 +3193,9 @@ tensor(2.0120)
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">amnist_predictions</span> <span class="o">=</span> <span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">predictions</span><span class="p">[</span><span class="n">shuffled_balanced_amnist_indices</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">amnist_predictions</span> <span class="o">=</span> <span class="n">ambiguous_samples_evaluation_convex_mixture</span><span class="o">.</span><span class="n">predictions</span><span class="p">[</span>
+    <span class="n">shuffled_balanced_amnist_indices</span>
+<span class="p">]</span>
 </pre></div>
 
     </div>
@@ -2999,7 +3213,9 @@ tensor(2.0120)
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">draw_labels</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">num_labels</span><span class="p">):</span>
-    <span class="n">drawn_labels</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="n">num_labels</span><span class="p">,</span> <span class="n">replacement</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">drawn_labels</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span>
+        <span class="n">predictions</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="n">num_labels</span><span class="p">,</span> <span class="n">replacement</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
     <span class="k">return</span> <span class="n">drawn_labels</span>
 </pre></div>
 
@@ -3040,7 +3256,9 @@ tensor(2.0120)
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">amnist_samples</span> <span class="o">=</span> <span class="n">stratified_ambiguous_samples_convex_mixture</span><span class="p">[</span><span class="n">shuffled_balanced_amnist_indices</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">amnist_samples</span> <span class="o">=</span> <span class="n">stratified_ambiguous_samples_convex_mixture</span><span class="p">[</span>
+    <span class="n">shuffled_balanced_amnist_indices</span>
+<span class="p">]</span>
 <span class="n">amnist_calibrated_samples</span> <span class="o">=</span> <span class="n">calibrated_post_process_vae_mnist</span><span class="p">(</span><span class="n">amnist_samples</span><span class="p">)</span>
 </pre></div>
 
@@ -3090,7 +3308,11 @@ tensor(2.0120)
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">amnist_samples</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;amnist_samples.pt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">amnist_samples</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;amnist_samples.pt&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+<span class="p">)</span>
 <span class="n">amnist_labels</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;amnist_labels.pt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">amnist_samples</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">amnist_labels</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
@@ -3142,8 +3364,12 @@ tensor(2.0120)
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">amnist_train_dataset</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">TensorDataset</span><span class="p">(</span><span class="n">amnist_whitened_samples</span><span class="p">[:</span><span class="o">-</span><span class="mi">30000</span><span class="p">],</span> <span class="n">amnist_labels</span><span class="p">[:</span><span class="o">-</span><span class="mi">30000</span><span class="p">])</span>
-<span class="n">amnist_test_dataset</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">TensorDataset</span><span class="p">(</span><span class="n">amnist_whitened_samples</span><span class="p">[</span><span class="o">-</span><span class="mi">30000</span><span class="p">:],</span> <span class="n">amnist_labels</span><span class="p">[</span><span class="o">-</span><span class="mi">30000</span><span class="p">:])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">amnist_train_dataset</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">TensorDataset</span><span class="p">(</span>
+    <span class="n">amnist_whitened_samples</span><span class="p">[:</span><span class="o">-</span><span class="mi">30000</span><span class="p">],</span> <span class="n">amnist_labels</span><span class="p">[:</span><span class="o">-</span><span class="mi">30000</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">amnist_test_dataset</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">TensorDataset</span><span class="p">(</span>
+    <span class="n">amnist_whitened_samples</span><span class="p">[</span><span class="o">-</span><span class="mi">30000</span><span class="p">:],</span> <span class="n">amnist_labels</span><span class="p">[</span><span class="o">-</span><span class="mi">30000</span><span class="p">:]</span>
+<span class="p">)</span>
 </pre></div>
 
     </div>
@@ -3160,8 +3386,14 @@ tensor(2.0120)
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">amnist_train_dataset</span><span class="o">.</span><span class="n">tensors</span> <span class="o">=</span> <span class="p">(</span><span class="n">amnist_train_dataset</span><span class="o">.</span><span class="n">tensors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">amnist_train_dataset</span><span class="o">.</span><span class="n">tensors</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
-<span class="n">amnist_test_dataset</span><span class="o">.</span><span class="n">tensors</span> <span class="o">=</span> <span class="p">(</span><span class="n">amnist_test_dataset</span><span class="o">.</span><span class="n">tensors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">amnist_test_dataset</span><span class="o">.</span><span class="n">tensors</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">amnist_train_dataset</span><span class="o">.</span><span class="n">tensors</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">amnist_train_dataset</span><span class="o">.</span><span class="n">tensors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">amnist_train_dataset</span><span class="o">.</span><span class="n">tensors</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span>
+<span class="p">)</span>
+<span class="n">amnist_test_dataset</span><span class="o">.</span><span class="n">tensors</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">amnist_test_dataset</span><span class="o">.</span><span class="n">tensors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">amnist_test_dataset</span><span class="o">.</span><span class="n">tensors</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span>
+<span class="p">)</span>
 </pre></div>
 
     </div>
@@ -3179,10 +3411,16 @@ tensor(2.0120)
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">amnist_train_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
-    <span class="n">dataset</span><span class="o">=</span><span class="n">amnist_train_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">pin_memory</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+    <span class="n">dataset</span><span class="o">=</span><span class="n">amnist_train_dataset</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+    <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">pin_memory</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">(),</span>
 <span class="p">)</span>
 <span class="n">amnist_test_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
-    <span class="n">dataset</span><span class="o">=</span><span class="n">amnist_test_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pin_memory</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+    <span class="n">dataset</span><span class="o">=</span><span class="n">amnist_test_dataset</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+    <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">pin_memory</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">(),</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -3200,8 +3438,12 @@ tensor(2.0120)
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dmnist_train_dataset</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">ConcatDataset</span><span class="p">([</span><span class="n">mnist_train_dataset</span><span class="p">,</span> <span class="n">amnist_train_dataset</span><span class="p">])</span>
-<span class="n">dmnist_test_dataset</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">ConcatDataset</span><span class="p">([</span><span class="n">mnist_test_dataset</span><span class="p">,</span> <span class="n">amnist_test_dataset</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dmnist_train_dataset</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">ConcatDataset</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">mnist_train_dataset</span><span class="p">,</span> <span class="n">amnist_train_dataset</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">dmnist_test_dataset</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">ConcatDataset</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">mnist_test_dataset</span><span class="p">,</span> <span class="n">amnist_test_dataset</span><span class="p">]</span>
+<span class="p">)</span>
 </pre></div>
 
     </div>
@@ -3219,10 +3461,16 @@ tensor(2.0120)
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dmnist_train_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
-    <span class="n">dataset</span><span class="o">=</span><span class="n">dmnist_train_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">pin_memory</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+    <span class="n">dataset</span><span class="o">=</span><span class="n">dmnist_train_dataset</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+    <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">pin_memory</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">(),</span>
 <span class="p">)</span>
 <span class="n">dmnist_test_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
-    <span class="n">dataset</span><span class="o">=</span><span class="n">dmnist_test_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pin_memory</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+    <span class="n">dataset</span><span class="o">=</span><span class="n">dmnist_test_dataset</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+    <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">pin_memory</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">(),</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -3266,11 +3514,17 @@ tensor(2.0120)
 <span class="p">)</span>
 
 <span class="n">fmnist_train_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
-    <span class="n">fmnist_train_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">pin_memory</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+    <span class="n">fmnist_train_dataset</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+    <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">pin_memory</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">(),</span>
 <span class="p">)</span>
 
 <span class="n">fmnist_test_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
-    <span class="n">fmnist_test_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pin_memory</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+    <span class="n">fmnist_test_dataset</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+    <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">pin_memory</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">(),</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -3426,28 +3680,70 @@ tensor(2.0120)
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 
+
 <span class="k">def</span> <span class="nf">plot_entropies</span><span class="p">(</span><span class="n">evaluation</span><span class="p">:</span> <span class="n">Evaluation</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">evaluation</span><span class="o">.</span><span class="n">entropies</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">stat</span><span class="o">=</span><span class="s2">&quot;probability&quot;</span><span class="p">,</span> <span class="n">binrange</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">)],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span>
+        <span class="n">evaluation</span><span class="o">.</span><span class="n">entropies</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span>
+        <span class="n">stat</span><span class="o">=</span><span class="s2">&quot;probability&quot;</span><span class="p">,</span>
+        <span class="n">binrange</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">)],</span>
+        <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span>
 
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span> <span class="o">/</span> <span class="mf">1.6</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">plot_entropies</span><span class="p">(</span><span class="n">amnist_test_evaluation</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;AMNIST&quot;</span><span class="p">)</span>
-<span class="n">plot_entropies</span><span class="p">(</span><span class="n">mnist_test_evaluation</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()[</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;MNIST&quot;</span><span class="p">)</span>
-<span class="n">plot_entropies</span><span class="p">(</span><span class="n">fmnist_test_evaluation</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()[</span><span class="mi">2</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;FMNIST&quot;</span><span class="p">)</span>
+<span class="n">plot_entropies</span><span class="p">(</span>
+    <span class="n">amnist_test_evaluation</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;AMNIST&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plot_entropies</span><span class="p">(</span>
+    <span class="n">mnist_test_evaluation</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;MNIST&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plot_entropies</span><span class="p">(</span>
+    <span class="n">fmnist_test_evaluation</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()[</span><span class="mi">2</span><span class="p">],</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;FMNIST&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">plot_entropies</span><span class="p">(</span><span class="n">mnist_test_evaluation</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;MNIST&quot;</span><span class="p">)</span>
+<span class="n">plot_entropies</span><span class="p">(</span>
+    <span class="n">mnist_test_evaluation</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;MNIST&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;MNIST&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">plot_entropies</span><span class="p">(</span><span class="n">amnist_test_evaluation</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;AMNIST&quot;</span><span class="p">)</span>
+<span class="n">plot_entropies</span><span class="p">(</span>
+    <span class="n">amnist_test_evaluation</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;AMNIST&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;AMNIST&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">plot_entropies</span><span class="p">(</span><span class="n">dmnist_test_evaluation</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;DMNIST&quot;</span><span class="p">)</span>
+<span class="n">plot_entropies</span><span class="p">(</span>
+    <span class="n">dmnist_test_evaluation</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;DMNIST&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;DMNIST&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="n">plot_entropies</span><span class="p">(</span><span class="n">fmnist_test_evaluation</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;FMNIST&quot;</span><span class="p">)</span>
+<span class="n">plot_entropies</span><span class="p">(</span>
+    <span class="n">fmnist_test_evaluation</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;FMNIST&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;FMNIST&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>

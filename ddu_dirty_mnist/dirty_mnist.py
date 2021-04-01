@@ -10,7 +10,11 @@ from urllib.error import URLError
 
 import torch
 from torchvision.datasets.mnist import MNIST, VisionDataset
-from torchvision.datasets.utils import download_url, extract_archive, verify_str_arg
+from torchvision.datasets.utils import (
+    download_url,
+    extract_archive,
+    verify_str_arg,
+)
 from torchvision.transforms import Compose, Normalize, ToTensor
 
 # based on torchvision.datasets.mnist.py (https://github.com/pytorch/vision/blob/37eb37a836fbc2c26197dfaf76d2a3f4f39f15df/torchvision/datasets/mnist.py)
@@ -50,9 +54,13 @@ class AmbiguousMNIST(VisionDataset):
         device: Device to use (pass `num_workers=0, pin_memory=False` to the DataLoader for max throughput)
     """
 
-    mirrors = ["http://github.com/BlackHC/ddu_dirty_mnist/releases/download/data-v0.5.0/"]
+    mirrors = [
+        "http://github.com/BlackHC/ddu_dirty_mnist/releases/download/data-v0.5.0/"
+    ]
 
-    resources = dict(data=("amnist_samples.pt", None), targets=("amnist_labels.pt", None))
+    resources = dict(
+        data=("amnist_samples.pt", None), targets=("amnist_labels.pt", None)
+    )
 
     def __init__(
         self,
@@ -64,7 +72,9 @@ class AmbiguousMNIST(VisionDataset):
         normalize: bool = True,
         device=None,
     ):
-        super().__init__(root, transform=transform, target_transform=target_transform)
+        super().__init__(
+            root, transform=transform, target_transform=target_transform
+        )
 
         self.train = train  # training set or test set
 
@@ -75,11 +85,15 @@ class AmbiguousMNIST(VisionDataset):
         if normalize:
             self.data = self.data.sub_(0.1307).div_(0.3081)
 
-        self.targets = torch.load(self.resource_path("targets"), map_location=device)
+        self.targets = torch.load(
+            self.resource_path("targets"), map_location=device
+        )
 
         num_multi_labels = self.targets.shape[1]
 
-        self.data = self.data.expand(-1, num_multi_labels, 28, 28).reshape(-1, 1, 28, 28)
+        self.data = self.data.expand(-1, num_multi_labels, 28, 28).reshape(
+            -1, 1, 28, 28
+        )
         self.targets = self.targets.reshape(-1)
 
         data_range = slice(None, 60000) if self.train else slice(60000, None)
@@ -115,7 +129,9 @@ class AmbiguousMNIST(VisionDataset):
         return os.path.join(self.data_folder, self.resources[name][0])
 
     def _check_exists(self) -> bool:
-        return all(os.path.exists(self.resource_path(name)) for name in self.resources)
+        return all(
+            os.path.exists(self.resource_path(name)) for name in self.resources
+        )
 
     def download(self) -> None:
         """Download the data if it doesn't exist in data_folder already."""
@@ -131,7 +147,9 @@ class AmbiguousMNIST(VisionDataset):
                 url = "{}{}".format(mirror, filename)
                 try:
                     print("Downloading {}".format(url))
-                    download_url(url, root=self.data_folder, filename=filename, md5=md5)
+                    download_url(
+                        url, root=self.data_folder, filename=filename, md5=md5
+                    )
                 except URLError as error:
                     print("Failed to download (trying next):\n{}".format(error))
                     continue

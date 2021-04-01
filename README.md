@@ -15,8 +15,12 @@ After installing, you get a Dirty-MNIST train or test set just like you would fo
 
 import ddu_dirty_mnist
 
-dirty_mnist_train = ddu_dirty_mnist.DirtyMNIST(".", train=True, download=True, device="cuda")
-dirty_mnist_test = ddu_dirty_mnist.DirtyMNIST(".", train=False, download=True, device="cuda")
+dirty_mnist_train = ddu_dirty_mnist.DirtyMNIST(
+    ".", train=True, download=True, device="cuda"
+)
+dirty_mnist_test = ddu_dirty_mnist.DirtyMNIST(
+    ".", train=False, download=True, device="cuda"
+)
 len(dirty_mnist_train), len(dirty_mnist_test)
 ```
 
@@ -34,10 +38,18 @@ Here is how to create `torch.utils.data.DataLoader`, see [the documentation](./d
 import torch
 
 dirty_mnist_train_dataloader = torch.utils.data.DataLoader(
-    dirty_mnist_train, batch_size=128, shuffle=True, num_workers=0, pin_memory=False
+    dirty_mnist_train,
+    batch_size=128,
+    shuffle=True,
+    num_workers=0,
+    pin_memory=False,
 )
 dirty_mnist_test_dataloader = torch.utils.data.DataLoader(
-    dirty_mnist_test, batch_size=128, shuffle=False, num_workers=0, pin_memory=False
+    dirty_mnist_test,
+    batch_size=128,
+    shuffle=False,
+    num_workers=0,
+    pin_memory=False,
 )
 ```
 
@@ -48,8 +60,12 @@ If you only care about Ambiguous-MNIST, you can use:
 
 import ddu_dirty_mnist
 
-ambiguous_mnist_train = ddu_dirty_mnist.AmbiguousMNIST(".", train=True, download=True, device="cuda")
-ambiguous_mnist_test = ddu_dirty_mnist.AmbiguousMNIST(".", train=False, download=True, device="cuda")
+ambiguous_mnist_train = ddu_dirty_mnist.AmbiguousMNIST(
+    ".", train=True, download=True, device="cuda"
+)
+ambiguous_mnist_test = ddu_dirty_mnist.AmbiguousMNIST(
+    ".", train=False, download=True, device="cuda"
+)
 
 ambiguous_mnist_train, ambiguous_mnist_test
 ```
@@ -73,9 +89,17 @@ Here is how to create `torch.utils.data.DataLoader`, see [the documentation](./d
 import torch
 
 ambiguous_mnist_train_dataloader = torch.utils.data.DataLoader(
-    ambiguous_mnist_train, batch_size=128, shuffle=True, num_workers=0, pin_memory=False
+    ambiguous_mnist_train,
+    batch_size=128,
+    shuffle=True,
+    num_workers=0,
+    pin_memory=False,
 )
 ambiguous_mnist_test_dataloader = torch.utils.data.DataLoader(
-    ambiguous_mnist_test, batch_size=128, shuffle=False, num_workers=0, pin_memory=False
+    ambiguous_mnist_test,
+    batch_size=128,
+    shuffle=False,
+    num_workers=0,
+    pin_memory=False,
 )
 ```
