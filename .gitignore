@@ -140,3 +140,4 @@ checklink/cookies.txt
 .gitconfig
 
 /git-wrapper
+.virtual_documents
