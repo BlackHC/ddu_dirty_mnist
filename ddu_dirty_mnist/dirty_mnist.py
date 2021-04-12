@@ -50,7 +50,7 @@ class AmbiguousMNIST(VisionDataset):
         device: Device to use (pass `num_workers=0, pin_memory=False` to the DataLoader for max throughput)
     """
 
-    mirrors = ["http://github.com/BlackHC/ddu_dirty_mnist/releases/download/data-v0.5.0/"]
+    mirrors = ["http://github.com/BlackHC/ddu_dirty_mnist/releases/download/data-v0.6.0/"]
 
     resources = dict(data=("amnist_samples.pt", None), targets=("amnist_labels.pt", None))
 
