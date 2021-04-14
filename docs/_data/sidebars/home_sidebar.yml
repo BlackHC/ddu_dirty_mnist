@@ -10,7 +10,7 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
-      title: DirtyMNIST DataLoader
+      title: DirtyMNIST and AmbiguousMNIST DataLoader
       url: dataloader.html
     - output: web,pdf
       title: Creating Ambiguous-MNIST for Dirty-MNIST

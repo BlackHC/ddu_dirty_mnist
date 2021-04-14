@@ -13,13 +13,13 @@ from torchvision.datasets.mnist import MNIST, VisionDataset
 from torchvision.datasets.utils import download_url, extract_archive, verify_str_arg
 from torchvision.transforms import Compose, Normalize, ToTensor
 
-# based on torchvision.datasets.mnist.py (https://github.com/pytorch/vision/blob/37eb37a836fbc2c26197dfaf76d2a3f4f39f15df/torchvision/datasets/mnist.py)
+# Cell
 
 MNIST_NORMALIZATION = Normalize((0.1307,), (0.3081,))
 
 # Cell
 
-
+# based on torchvision.datasets.mnist.py (https://github.com/pytorch/vision/blob/37eb37a836fbc2c26197dfaf76d2a3f4f39f15df/torchvision/datasets/mnist.py)
 class AmbiguousMNIST(VisionDataset):
     """
     Ambiguous-MNIST Dataset
@@ -46,13 +46,13 @@ class AmbiguousMNIST(VisionDataset):
             and returns a transformed version. E.g, ``transforms.RandomCrop``
         target_transform (callable, optional): A function/transform that takes in the
             target and transforms it.
-        normalize (bool, optional): Whiten the samples.
+        normalize (bool, optional): Normalize the samples.
         device: Device to use (pass `num_workers=0, pin_memory=False` to the DataLoader for max throughput)
     """
 
     mirrors = ["http://github.com/BlackHC/ddu_dirty_mnist/releases/download/data-v0.6.0/"]
 
-    resources = dict(data=("amnist_samples.pt", None), targets=("amnist_labels.pt", None))
+    resources = dict(data=("amnist_samples.pt", "4f7865093b1d28e34019847fab917722"), targets=("amnist_labels.pt", "3bfc055a9f91a76d8d493e8b898c3c95"))
 
     def __init__(
         self,
@@ -147,10 +147,9 @@ class AmbiguousMNIST(VisionDataset):
 
 # Cell
 
-# based on https://tinyurl.com/pytorch-fast-mnist
 class FastMNIST(MNIST):
     """
-    FastMNIST, like MNIST (<http://yann.lecun.com/exdb/mnist/>) but faster throughput.
+    FastMNIST, based on https://tinyurl.com/pytorch-fast-mnist. It's like MNIST (<http://yann.lecun.com/exdb/mnist/>) but faster.
 
     Args:
         root (string): Root directory of dataset where ``MNIST/processed/training.pt``
@@ -164,7 +163,7 @@ class FastMNIST(MNIST):
             and returns a transformed version. E.g, ``transforms.RandomCrop``
         target_transform (callable, optional): A function/transform that takes in the
             target and transforms it.
-        normalize (bool, optional): Whiten the samples.
+        normalize (bool, optional): Normalize the samples.
         device: Device to use (pass `num_workers=0, pin_memory=False` to the DataLoader for
             max throughput).
     """
@@ -235,7 +234,7 @@ def DirtyMNIST(
             and returns a transformed version. E.g, ``transforms.RandomCrop``
         target_transform (callable, optional): A function/transform that takes in the
             target and transforms it.
-        normalize (bool, optional): Whiten the samples.
+        normalize (bool, optional): Normalize the samples.
         device: Device to use (pass `num_workers=0, pin_memory=False` to the DataLoader for
             max throughput).
     """

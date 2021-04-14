@@ -31,6 +31,23 @@ nb_path: "index.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p>You can find the paper here: <a href="https://arxiv.org/abs/2102.11582">https://arxiv.org/abs/2102.11582</a>.</p>
+<p>Please cite us using:</p>
+
+<pre><code>@article{mukhoti2021deterministic,
+  title={Deterministic Neural Networks with Appropriate Inductive Biases Capture Epistemic and Aleatoric Uncertainty},
+  author={Mukhoti, Jishnu and Kirsch, Andreas and van Amersfoort, Joost and Torr, Philip HS and Gal, Yarin},
+  journal={arXiv preprint arXiv:2102.11582},
+  year={2021}
+}</code></pre>
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Install">Install<a class="anchor-link" href="#Install"> </a></h2>
 </div>
 </div>
@@ -78,10 +95,24 @@ nb_path: "index.ipynb"
 
 <div class="output_area">
 
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Downloading http://github.com/BlackHC/ddu_dirty_mnist/releases/download/data-v0.6.0/amnist_samples.pt
+Using downloaded and verified file: ./AmbiguousMNIST/amnist_samples.pt
+
+Downloading http://github.com/BlackHC/ddu_dirty_mnist/releases/download/data-v0.6.0/amnist_labels.pt
+Downloading https://github-releases.githubusercontent.com/351788366/3f7f7380-9be7-11eb-8a0e-e58bb5dfc2bb?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20210414%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20210414T093659Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=22b376aa098be2c61beef6a3ed03a6fb32ab2b9dec31776b04ac321c13ffbbcc&amp;X-Amz-SignedHeaders=host&amp;actor_id=0&amp;key_id=0&amp;repo_id=351788366&amp;response-content-disposition=attachment%3B%20filename%3Damnist_labels.pt&amp;response-content-type=application%2Foctet-stream to ./AmbiguousMNIST/amnist_labels.pt
+
+Done!
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(120000, 30000)</pre>
+<pre>(120000, 70000)</pre>
 </div>
 
 </div>
@@ -94,7 +125,7 @@ nb_path: "index.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here is how to create <code>torch.utils.data.DataLoader</code>, see <a href="./dataloader.html">the documentation</a> for details.</p>
+<p>Create <code>torch.utils.data.DataLoader</code>s with <code>num_workers=0, pin_memory=False</code> for maximum throughput, see <a href="./dataloader.html">the documentation</a> for details.</p>
 
 </div>
 </div>
@@ -133,7 +164,7 @@ nb_path: "index.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If you only care about Ambiguous-MNIST, you can use:</p>
+<h3 id="Ambiguous-MNIST">Ambiguous-MNIST<a class="anchor-link" href="#Ambiguous-MNIST"> </a></h3><p>If you only care about Ambiguous-MNIST, you can use:</p>
 
 </div>
 </div>
@@ -169,7 +200,7 @@ nb_path: "index.ipynb"
      Number of datapoints: 60000
      Root location: .,
  Dataset AmbiguousMNIST
-     Number of datapoints: 20000
+     Number of datapoints: 60000
      Root location: .)</pre>
 </div>
 
@@ -183,7 +214,7 @@ nb_path: "index.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here is how to create <code>torch.utils.data.DataLoader</code>, see <a href="./dataloader.html">the documentation</a> for details.</p>
+<p>Again, create <code>torch.utils.data.DataLoader</code>s with <code>num_workers=0, pin_memory=False</code> for maximum throughput, see <a href="./dataloader.html">the documentation</a> for details.</p>
 
 </div>
 </div>
