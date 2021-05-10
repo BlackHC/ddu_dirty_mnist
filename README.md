@@ -122,3 +122,12 @@ ambiguous_mnist_test_dataloader = torch.utils.data.DataLoader(
     pin_memory=False,
 )
 ```
+
+## Additional Guidance
+
+1. DirtyMNIST is a concatenation of MNIST + AmbiguousMNIST, with 60k samples each in the training set.
+1. The current AmbiguousMNIST contains 6k unique samples with 10 labels each. This multi-label dataset gets flattened to 60k samples. The assumption is that amibguous samples have multiple "valid" labels as they are ambiguous. MNIST samples are intentionally undersampled (in comparison), which benefits AL acquisition functions that can select unambiguous samples.
+1. Pick your initial training samples (for warm starting Active Learning) from the MNIST half of DirtyMNIST to avoid starting training with potentially very ambiguous samples, which might add a lot of variance to your experiments.
+1. Make sure to pick your validation set from the MNIST half as well, for the same reason as above.
+1. Make sure that your batch acquisition size is >= 10 (probably).
+1. By default, Gaussian noise with stddev 0.05 is added to each sample to prevent acquisition functions from cheating by disgarding "duplicates".

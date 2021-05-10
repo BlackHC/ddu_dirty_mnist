@@ -95,20 +95,6 @@ nb_path: "index.ipynb"
 
 <div class="output_area">
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Downloading http://github.com/BlackHC/ddu_dirty_mnist/releases/download/data-v0.6.0/amnist_samples.pt
-Using downloaded and verified file: ./AmbiguousMNIST/amnist_samples.pt
-
-Downloading http://github.com/BlackHC/ddu_dirty_mnist/releases/download/data-v0.6.0/amnist_labels.pt
-Downloading https://github-releases.githubusercontent.com/351788366/3f7f7380-9be7-11eb-8a0e-e58bb5dfc2bb?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20210414%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20210414T093659Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=22b376aa098be2c61beef6a3ed03a6fb32ab2b9dec31776b04ac321c13ffbbcc&amp;X-Amz-SignedHeaders=host&amp;actor_id=0&amp;key_id=0&amp;repo_id=351788366&amp;response-content-disposition=attachment%3B%20filename%3Damnist_labels.pt&amp;response-content-type=application%2Foctet-stream to ./AmbiguousMNIST/amnist_labels.pt
-
-Done!
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -251,6 +237,20 @@ Done!
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Additional-Guidance">Additional Guidance<a class="anchor-link" href="#Additional-Guidance"> </a></h2><ol>
+<li>DirtyMNIST is a concatenation of MNIST + AmbiguousMNIST, with 60k samples each in the training set.</li>
+<li>The current AmbiguousMNIST contains 6k unique samples with 10 labels each. This multi-label dataset gets flattened to 60k samples. The assumption is that amibguous samples have multiple "valid" labels as they are ambiguous. MNIST samples are intentionally undersampled (in comparison), which benefits AL acquisition functions that can select unambiguous samples.</li>
+<li>Pick your initial training samples (for warm starting Active Learning) from the MNIST half of DirtyMNIST to avoid starting training with potentially very ambiguous samples, which might add a lot of variance to your experiments.</li>
+<li>Make sure to pick your validation set from the MNIST half as well, for the same reason as above.</li>
+<li>Make sure that your batch acquisition size is &gt;= 10 (probably).</li>
+<li>By default, Gaussian noise with stddev 0.05 is added to each sample to prevent acquisition functions from cheating by disgarding "duplicates".</li>
+</ol>
+
+</div>
+</div>
+</div>
 </div>
  
 
