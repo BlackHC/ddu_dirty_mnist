@@ -57,11 +57,13 @@ class AmbiguousMNIST(VisionDataset):
     def __init__(
         self,
         root: str,
+        *,
         train: bool = True,
         transform: Optional[Callable] = None,
         target_transform: Optional[Callable] = None,
         download: bool = False,
         normalize: bool = True,
+        noise_stddev=0.05,
         device=None,
     ):
         super().__init__(root, transform=transform, target_transform=target_transform)
@@ -84,6 +86,10 @@ class AmbiguousMNIST(VisionDataset):
 
         data_range = slice(None, 60000) if self.train else slice(60000, None)
         self.data = self.data[data_range]
+
+        if noise_stddev > 0.:
+            self.data += torch.randn_like(self.data) * noise_stddev
+
         self.targets = self.targets[data_range]
 
     def __getitem__(self, index: int) -> Tuple[torch.Tensor, int]:
@@ -168,7 +174,7 @@ class FastMNIST(MNIST):
             max throughput).
     """
 
-    def __init__(self, *args, normalize, device, **kwargs):
+    def __init__(self, *args, normalize, noise_stddev=0.05, device, **kwargs):
         super().__init__(*args, **kwargs)
 
         # Scale data to [0,1]
@@ -179,6 +185,9 @@ class FastMNIST(MNIST):
 
         if normalize:
             self.data = self.data.sub_(0.1307).div_(0.3081)
+
+        if noise_stddev > 0.:
+            self.data += torch.randn_like(self.data) * noise_stddev
 
     def __getitem__(self, index: int) -> Tuple[torch.Tensor, int]:
         """
@@ -203,11 +212,13 @@ class FastMNIST(MNIST):
 
 def DirtyMNIST(
     root: str,
+    *,
     train: bool = True,
     transform: Optional[Callable] = None,
     target_transform: Optional[Callable] = None,
     download: bool = False,
     normalize=True,
+    noise_stddev=0.05,
     device=None,
 ):
     """
@@ -246,6 +257,7 @@ def DirtyMNIST(
         target_transform=target_transform,
         download=download,
         normalize=normalize,
+        noise_stddev=noise_stddev,
         device=device,
     )
 
@@ -256,6 +268,7 @@ def DirtyMNIST(
         target_transform=target_transform,
         download=download,
         normalize=normalize,
+        noise_stddev=noise_stddev,
         device=device,
     )
 
