@@ -6,7 +6,9 @@
 [![Pytorch 1.8.1](https://img.shields.io/badge/pytorch-1.8.1-blue.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/BlackHC/ddu_dirty_mnist/blob/master/LICENSE)
 
-This repository contains the code for [*Deterministic Neural Networks with Appropriate Inductive Biases Capture Epistemic and Aleatoric Uncertainty*](https://arxiv.org/abs/2102.11582).
+This repository contains the Dirty-MNIST dataset described in [*Deterministic Neural Networks with Appropriate Inductive Biases Capture Epistemic and Aleatoric Uncertainty*](https://arxiv.org/abs/2102.11582).
+
+The official repository for the paper is at https://github.com/omegafragger/DDU.
 
 If the code or the paper has been useful in your research, please add a citation to our work:
 
@@ -18,6 +20,7 @@ If the code or the paper has been useful in your research, please add a citation
   year={2021}
 }
 ```
+
 ---
 
 ## Install
