@@ -2,10 +2,13 @@
 > You'll never want to use MNIST again for OOD or AL.
 
 
----
-You can find the paper here: https://arxiv.org/abs/2102.11582.
+[![arXiv](https://img.shields.io/badge/stat.ML-arXiv%3A2102.11582-B31B1B.svg)](https://arxiv.org/abs/2102.11582)
+[![Pytorch 1.8.1](https://img.shields.io/badge/pytorch-1.8.1-blue.svg)](https://pytorch.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/BlackHC/ddu_dirty_mnist/blob/master/LICENSE)
 
-Please cite us using:
+This repository contains the code for [*Deterministic Neural Networks with Appropriate Inductive Biases Capture Epistemic and Aleatoric Uncertainty*](https://arxiv.org/abs/2102.11582).
+
+If the code or the paper has been useful in your research, please add a citation to our work:
 
 ```
 @article{mukhoti2021deterministic,
@@ -15,7 +18,6 @@ Please cite us using:
   year={2021}
 }
 ```
-
 ---
 
 ## Install
@@ -36,15 +38,6 @@ dirty_mnist_test = ddu_dirty_mnist.DirtyMNIST(".", train=False, download=True, d
 len(dirty_mnist_train), len(dirty_mnist_test)
 ```
 
-    Downloading http://github.com/BlackHC/ddu_dirty_mnist/releases/download/data-v0.6.0/amnist_samples.pt
-    Using downloaded and verified file: ./AmbiguousMNIST/amnist_samples.pt
-    
-    Downloading http://github.com/BlackHC/ddu_dirty_mnist/releases/download/data-v0.6.0/amnist_labels.pt
-    Downloading https://github-releases.githubusercontent.com/351788366/3f7f7380-9be7-11eb-8a0e-e58bb5dfc2bb?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20210414%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210414T093659Z&X-Amz-Expires=300&X-Amz-Signature=22b376aa098be2c61beef6a3ed03a6fb32ab2b9dec31776b04ac321c13ffbbcc&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=351788366&response-content-disposition=attachment%3B%20filename%3Damnist_labels.pt&response-content-type=application%2Foctet-stream to ./AmbiguousMNIST/amnist_labels.pt
-    
-    Done!
-
-
 
 
 
@@ -52,7 +45,7 @@ len(dirty_mnist_train), len(dirty_mnist_test)
 
 
 
-Create `torch.utils.data.DataLoader`s with `num_workers=0, pin_memory=False` for maximum throughput, see [the documentation](./dataloader.html) for details.
+Create `torch.utils.data.DataLoader`s with `num_workers=0, pin_memory=False` for maximum throughput, see [the documentation](01_dataloader.ipynb) for details.
 
 ```python
 # gpu
@@ -129,5 +122,6 @@ ambiguous_mnist_test_dataloader = torch.utils.data.DataLoader(
 1. The current AmbiguousMNIST contains 6k unique samples with 10 labels each. This multi-label dataset gets flattened to 60k samples. The assumption is that amibguous samples have multiple "valid" labels as they are ambiguous. MNIST samples are intentionally undersampled (in comparison), which benefits AL acquisition functions that can select unambiguous samples.
 1. Pick your initial training samples (for warm starting Active Learning) from the MNIST half of DirtyMNIST to avoid starting training with potentially very ambiguous samples, which might add a lot of variance to your experiments.
 1. Make sure to pick your validation set from the MNIST half as well, for the same reason as above.
-1. Make sure that your batch acquisition size is >= 10 (probably).
+1. Make sure that your batch acquisition size is >= 10 (probably) given that there are 10 multi-labels per samples in Ambiguous-MNIST.
 1. By default, Gaussian noise with stddev 0.05 is added to each sample to prevent acquisition functions from cheating by disgarding "duplicates".
+1. If you want to split Ambiguous-MNIST into subsets (or Dirty-MNIST within the second ambiguous half), make sure to split by multiples of 10 to avoid splits within a flattened multi-label sample.

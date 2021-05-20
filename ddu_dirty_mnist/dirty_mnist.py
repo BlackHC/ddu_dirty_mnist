@@ -50,9 +50,12 @@ class AmbiguousMNIST(VisionDataset):
         device: Device to use (pass `num_workers=0, pin_memory=False` to the DataLoader for max throughput)
     """
 
-    mirrors = ["http://github.com/BlackHC/ddu_dirty_mnist/releases/download/data-v0.6.0/"]
+    mirrors = ["http://github.com/BlackHC/ddu_dirty_mnist/releases/download/data-v1.0.0/"]
 
-    resources = dict(data=("amnist_samples.pt", "4f7865093b1d28e34019847fab917722"), targets=("amnist_labels.pt", "3bfc055a9f91a76d8d493e8b898c3c95"))
+    resources = dict(
+        data=("amnist_samples.pt", "4f7865093b1d28e34019847fab917722"),
+        targets=("amnist_labels.pt", "3bfc055a9f91a76d8d493e8b898c3c95"),
+    )
 
     def __init__(
         self,
@@ -79,15 +82,17 @@ class AmbiguousMNIST(VisionDataset):
 
         self.targets = torch.load(self.resource_path("targets"), map_location=device)
 
+        # Each sample has `num_multi_labels` many labels.
         num_multi_labels = self.targets.shape[1]
 
+        # Flatten the multi-label dataset into a single-label dataset with samples repeated x `num_multi_labels` many times
         self.data = self.data.expand(-1, num_multi_labels, 28, 28).reshape(-1, 1, 28, 28)
         self.targets = self.targets.reshape(-1)
 
         data_range = slice(None, 60000) if self.train else slice(60000, None)
         self.data = self.data[data_range]
 
-        if noise_stddev > 0.:
+        if noise_stddev > 0.0:
             self.data += torch.randn_like(self.data) * noise_stddev
 
         self.targets = self.targets[data_range]
@@ -153,6 +158,7 @@ class AmbiguousMNIST(VisionDataset):
 
 # Cell
 
+
 class FastMNIST(MNIST):
     """
     FastMNIST, based on https://tinyurl.com/pytorch-fast-mnist. It's like MNIST (<http://yann.lecun.com/exdb/mnist/>) but faster.
@@ -186,7 +192,7 @@ class FastMNIST(MNIST):
         if normalize:
             self.data = self.data.sub_(0.1307).div_(0.3081)
 
-        if noise_stddev > 0.:
+        if noise_stddev > 0.0:
             self.data += torch.randn_like(self.data) * noise_stddev
 
     def __getitem__(self, index: int) -> Tuple[torch.Tensor, int]:

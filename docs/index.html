@@ -31,9 +31,11 @@ nb_path: "index.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p>You can find the paper here: <a href="https://arxiv.org/abs/2102.11582">https://arxiv.org/abs/2102.11582</a>.</p>
-<p>Please cite us using:</p>
+<p><a href="https://arxiv.org/abs/2102.11582"><img src="https://img.shields.io/badge/stat.ML-arXiv%3A2102.11582-B31B1B.svg" alt="arXiv"></a>
+<a href="https://pytorch.org/"><img src="https://img.shields.io/badge/pytorch-1.8.1-blue.svg" alt="Pytorch 1.8.1"></a>
+<a href="https://github.com/BlackHC/ddu_dirty_mnist/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></p>
+<p>This repository contains the code for <a href="https://arxiv.org/abs/2102.11582"><em>Deterministic Neural Networks with Appropriate Inductive Biases Capture Epistemic and Aleatoric Uncertainty</em></a>.</p>
+<p>If the code or the paper has been useful in your research, please add a citation to our work:</p>
 
 <pre><code>@article{mukhoti2021deterministic,
   title={Deterministic Neural Networks with Appropriate Inductive Biases Capture Epistemic and Aleatoric Uncertainty},
@@ -111,7 +113,7 @@ nb_path: "index.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Create <code>torch.utils.data.DataLoader</code>s with <code>num_workers=0, pin_memory=False</code> for maximum throughput, see <a href="./dataloader.html">the documentation</a> for details.</p>
+<p>Create <code>torch.utils.data.DataLoader</code>s with <code>num_workers=0, pin_memory=False</code> for maximum throughput, see <a href="01_dataloader.ipynb">the documentation</a> for details.</p>
 
 </div>
 </div>
@@ -244,8 +246,9 @@ nb_path: "index.ipynb"
 <li>The current AmbiguousMNIST contains 6k unique samples with 10 labels each. This multi-label dataset gets flattened to 60k samples. The assumption is that amibguous samples have multiple "valid" labels as they are ambiguous. MNIST samples are intentionally undersampled (in comparison), which benefits AL acquisition functions that can select unambiguous samples.</li>
 <li>Pick your initial training samples (for warm starting Active Learning) from the MNIST half of DirtyMNIST to avoid starting training with potentially very ambiguous samples, which might add a lot of variance to your experiments.</li>
 <li>Make sure to pick your validation set from the MNIST half as well, for the same reason as above.</li>
-<li>Make sure that your batch acquisition size is &gt;= 10 (probably).</li>
+<li>Make sure that your batch acquisition size is &gt;= 10 (probably) given that there are 10 multi-labels per samples in Ambiguous-MNIST.</li>
 <li>By default, Gaussian noise with stddev 0.05 is added to each sample to prevent acquisition functions from cheating by disgarding "duplicates".</li>
+<li>If you want to split Ambiguous-MNIST into subsets (or Dirty-MNIST within the second ambiguous half), make sure to split by multiples of 10 to avoid splits within a flattened multi-label sample.</li>
 </ol>
 
 </div>
