@@ -32,8 +32,9 @@ nb_path: "index.ipynb"
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a href="https://arxiv.org/abs/2102.11582"><img src="https://img.shields.io/badge/stat.ML-arXiv%3A2102.11582-B31B1B.svg" alt="arXiv"></a>
+<a href="https://pypi.org/project/ddu-dirty-mnist/"><img src="https://img.shields.io/pypi/v/ddu_dirty_mnist" alt="PyPI"></a>
 <a href="https://pytorch.org/"><img src="https://img.shields.io/badge/pytorch-1.8.1-blue.svg" alt="Pytorch 1.8.1"></a>
-<a href="https://github.com/BlackHC/ddu_dirty_mnist/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: Apache"></a></p>
+<a href="https://github.com/BlackHC/ddu_dirty_mnist/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-Apache-yellow.svg" alt="License: Apache"></a></p>
 <p>This repository contains the Dirty-MNIST dataset described in <a href="https://arxiv.org/abs/2102.11582"><em>Deterministic Neural Networks with Appropriate Inductive Biases Capture Epistemic and Aleatoric Uncertainty</em></a>.</p>
 <p>The official repository for the paper is at <a href="https://github.com/omegafragger/DDU">https://github.com/omegafragger/DDU</a>.</p>
 <p>If the code or the paper has been useful in your research, please add a citation to our work:</p>
@@ -44,6 +45,9 @@ nb_path: "index.ipynb"
   journal={arXiv preprint arXiv:2102.11582},
   year={2021}
 }</code></pre>
+<p>DirtyMNIST is a concatenation of MNIST and AmbiguousMNIST, with 60k sample-label pairs each in the training set.
+AmbiguousMNIST contains generated ambiguous MNIST samples with varying entropies: 6k unique samples with 10 labels each.</p>
+<p><img src="/ddu_dirty_mnist/amnist_digits.png" alt="AmbiguousMNIST Digits from each class with increasing entropy"></p>
 <hr>
 
 </div>
@@ -243,7 +247,6 @@ nb_path: "index.ipynb"
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Additional-Guidance">Additional Guidance<a class="anchor-link" href="#Additional-Guidance"> </a></h2><ol>
-<li>DirtyMNIST is a concatenation of MNIST + AmbiguousMNIST, with 60k samples each in the training set.</li>
 <li>The current AmbiguousMNIST contains 6k unique samples with 10 labels each. This multi-label dataset gets flattened to 60k samples. The assumption is that amibguous samples have multiple "valid" labels as they are ambiguous. MNIST samples are intentionally undersampled (in comparison), which benefits AL acquisition functions that can select unambiguous samples.</li>
 <li>Pick your initial training samples (for warm starting Active Learning) from the MNIST half of DirtyMNIST to avoid starting training with potentially very ambiguous samples, which might add a lot of variance to your experiments.</li>
 <li>Make sure to pick your validation set from the MNIST half as well, for the same reason as above.</li>

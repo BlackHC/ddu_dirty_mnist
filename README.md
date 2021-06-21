@@ -3,6 +3,7 @@
 
 
 [![arXiv](https://img.shields.io/badge/stat.ML-arXiv%3A2102.11582-B31B1B.svg)](https://arxiv.org/abs/2102.11582)
+[![PyPI](https://img.shields.io/pypi/v/ddu_dirty_mnist)](https://pypi.org/project/ddu-dirty-mnist/)
 [![Pytorch 1.8.1](https://img.shields.io/badge/pytorch-1.8.1-blue.svg)](https://pytorch.org/)
 [![License: Apache](https://img.shields.io/badge/License-Apache-yellow.svg)](https://github.com/BlackHC/ddu_dirty_mnist/blob/master/LICENSE)
 
@@ -21,6 +22,11 @@ If the code or the paper has been useful in your research, please add a citation
 }
 ```
 
+DirtyMNIST is a concatenation of MNIST and AmbiguousMNIST, with 60k sample-label pairs each in the training set.
+AmbiguousMNIST contains generated ambiguous MNIST samples with varying entropies: 6k unique samples with 10 labels each.
+
+![AmbiguousMNIST Digits from each class with increasing entropy](amnist_digits.png)
+
 ---
 
 ## Install
@@ -31,7 +37,7 @@ If the code or the paper has been useful in your research, please add a citation
 
 After installing, you get a Dirty-MNIST train or test set just like you would for MNIST in PyTorch.
 
-```python
+```
 # gpu
 
 import ddu_dirty_mnist
@@ -50,7 +56,7 @@ len(dirty_mnist_train), len(dirty_mnist_test)
 
 Create `torch.utils.data.DataLoader`s with `num_workers=0, pin_memory=False` for maximum throughput, see [the documentation](01_dataloader.ipynb) for details.
 
-```python
+```
 # gpu
 import torch
 
@@ -74,7 +80,7 @@ dirty_mnist_test_dataloader = torch.utils.data.DataLoader(
 
 If you only care about Ambiguous-MNIST, you can use:
 
-```python
+```
 # gpu
 
 import ddu_dirty_mnist
@@ -99,7 +105,7 @@ ambiguous_mnist_train, ambiguous_mnist_test
 
 Again, create `torch.utils.data.DataLoader`s with `num_workers=0, pin_memory=False` for maximum throughput, see [the documentation](./dataloader.html) for details.
 
-```python
+```
 # gpu
 import torch
 
@@ -121,7 +127,6 @@ ambiguous_mnist_test_dataloader = torch.utils.data.DataLoader(
 
 ## Additional Guidance
 
-1. DirtyMNIST is a concatenation of MNIST + AmbiguousMNIST, with 60k samples each in the training set.
 1. The current AmbiguousMNIST contains 6k unique samples with 10 labels each. This multi-label dataset gets flattened to 60k samples. The assumption is that amibguous samples have multiple "valid" labels as they are ambiguous. MNIST samples are intentionally undersampled (in comparison), which benefits AL acquisition functions that can select unambiguous samples.
 1. Pick your initial training samples (for warm starting Active Learning) from the MNIST half of DirtyMNIST to avoid starting training with potentially very ambiguous samples, which might add a lot of variance to your experiments.
 1. Make sure to pick your validation set from the MNIST half as well, for the same reason as above.
