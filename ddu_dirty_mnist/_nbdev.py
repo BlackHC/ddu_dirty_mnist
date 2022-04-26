@@ -5,7 +5,8 @@ __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 index = {"MNIST_NORMALIZATION": "01_dataloader.ipynb",
          "AmbiguousMNIST": "01_dataloader.ipynb",
          "FastMNIST": "01_dataloader.ipynb",
-         "DirtyMNIST": "01_dataloader.ipynb"}
+         "DirtyMNIST": "01_dataloader.ipynb",
+         "DistributionalAmbiguousMNIST": "01_dataloader.ipynb"}
 
 modules = ["dirty_mnist.py"]
 
